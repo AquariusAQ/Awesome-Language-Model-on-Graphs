@@ -27,30 +27,29 @@ In this paper, we provide a comprehensive review of scenarios and techniques rel
     - [Keywords Convention](#keywords-convention)
   - [Perspectives](#perspectives)
   - [Pure Graphs](#pure-graphs)
-    - [Datasets](#datasets)
-    - [Direct Answering](#-direct-answering)
-    - [Heuristic Reasoning](#-heuristic-reasoning)
-    - [Algorithmic Reasoning](#-algorithmic-reasoning)
+    - [ Datasets](#-datasets)
+    - [ Direct Answering](#-direct-answering)
+    - [ Heuristic Reasoning](#-heuristic-reasoning)
+    - [ Algorithmic Reasoning](#-algorithmic-reasoning)
   - [Text-Attributed Graphs](#text-attributed-graphs)
-    - [Datasets](#datasets-1)
-    - [LLM as Predictor (Node)](#-llm-as-predictor-node)
+    - [ Datasets](#-datasets-1)
+    - [ LLM as Predictor (Node)](#-llm-as-predictor-node)
       - [Graph As Sequence (Node)](#graph-as-sequence-node)
       - [Graph-Empowered LLM (Node)](#graph-empowered-llm-node)
       - [Graph-Aware LLM Finetuning](#graph-aware-llm-finetuning)
-    - [LLM as Encoder](#-llm-as-encoder)
+    - [ LLM as Encoder](#-llm-as-encoder)
       - [Optimization](#optimization)
       - [Data Augmentation](#data-augmentation)
-      <!-- - [Knowledge Distillation](#knowledge-distillation) -->
       - [Efficiency](#efficiency)
-    - [LLM as Aligner (Node)](#-llm-as-aligner-node)
+    - [ LLM as Aligner (Node)](#-llm-as-aligner-node)
       - [Prediction Alignment](#prediction-alignment)
       - [Latent Space Alignment (Node)](#latent-space-alignment-node)
   - [Text-Paired Graphs (Molecules)](#text-paired-graphs-molecules)
-    - [Datasets](#datasets-2)
-    - [LLM as Predictor (Graph)](#-llm-as-predictor-graph)
+    - [ Datasets](#-datasets-2)
+    - [ LLM as Predictor (Graph)](#-llm-as-predictor-graph)
       - [Graph As Sequence](#graph-as-sequence)
       - [Graph-Empowered LLM (Graph)](#graph-empowered-llm-graph)
-    - [LLM as Aligner (Graph)](#-llm-as-aligner-graph)
+    - [ LLM as Aligner (Graph)](#-llm-as-aligner-graph)
       - [Latent Space Alignment (Graph)](#latent-space-alignment-graph)
   - [Others](#others)
   - [Contribution](#contribution)
@@ -69,17 +68,98 @@ In this paper, we provide a comprehensive review of scenarios and techniques rel
 
     *Shirui Pan, Linhao Luo, Yufei Wang, Chen Chen, Jiapu Wang, Xindong Wu* [[PDF](https://arxiv.org/pdf/2306.08302.pdf)], 2023.6
 
+    本文中提出了一个前瞻性的路线图，用于统一LLMs和KGs。我们的路线图包括三个通用框架：
+    1）**KG增强的LLMs**，它在LLMs的预训练和推理阶段整合KGs，或为了增强对LLMs学习的知识的理解；
+    2）**LLM增强的KGs**，利用LLMs进行不同的KG任务，如嵌入、补全、构建、图到文本生成和问答；
+    3）协同的LLMs + KGs，其中LLMs和KGs扮演平等的角色，并以互利的方式工作，通过数据和知识驱动的双向推理来增强LLMs和KGs。
+
 2. **Integrating Graphs with Large Language Models: Methods and Prospects** `preprint`
     
     *Shirui Pan, Yizhen Zheng, Yixin Liu* [[PDF](https://arxiv.org/pdf/2310.05499.pdf)], 2023.10
+
+    本文探讨了将 LLMs 与图结构数据相结合的方法和前景。作者将这种结合分为两大类：
+    一是**利用LLMs增强图学习**，二是**利用图结构提升LLMs的能力**。在第一类中，LLMs被用于处理各种图相关任务，包括预测图属性、节点和图分类等。在第二类中，通过利用图结构，可以显著提升LLMs在复杂问题解决中的效能。
+    文章还讨论了使用LLMs处理图任务的两个主要优势：透明度和丰富的先验知识库。
+
+    文章提出了以下开放性问题和未来的研究方向：
+    a. LLMs Enhancing Graph Learning:
+      - 如何利用LLMs学习除了**文本属性图之外的其他类型的图**？
+      - 如何帮助LLMs**理解图**？这涉及到图描述语言的选择和LLMs在图上的预训练或微调。
+  
+    b. Graphs Enhance LLM Ability:
+      - 如何提升更复杂的图结构以增强LLM推理能力？例如，探索超图、概率图模型和符号图等。
+      - 如何提升更复杂的图结构以增强多智能体系统（Multi-Agent Systems, MLS）？例如，采用树、传统图甚至更复杂的结构来指导MLS。
+      - 如何将图结构整合到LLMs的整个生命周期中？这包括在训练、微调和推理阶段利用图结构。
+
+    未来方向包括：
+      - 将不同数据类型转换为文本格式，以便LLMs处理。
+      - 利用**多模态模型进行图-文本对齐**，以利用多模态LLMs的能力。
+      - 扩展**图描述语言**，使LLMs能更有效地理解和处理图。
+      - 在图数据上预训练或**微调**LLMs，以更好地理解图。
+      - 建立大规模的**基础图模型**，使图学习能够利用LLMs的先验知识和可扩展性。
+      - 探索不同的图类型，以显著提升LLM推理能力。
+      - 在团队基础的LLM工作流程中采用不同的图形式，以提高效率。
+      - 在LLMs的训练、微调和推理阶段利用图结构，以实现更有效的学习。
+
 
 3. **Towards graph foundation models: A survey and beyond.** `preprint`
 
     *Jiawei Liu, Cheng Yang, Zhiyuan Lu, Junze Chen, Yibo Li, Mengmei Zhang, Ting Bai, Yuan Fang, Lichao Sun, Philip S. Yu, Chuan Shi.* [[PDF](https://arxiv.org/pdf/2310.11829.pdf)], 2023.10
 
+    **图基础模型定义**
+    图基础模型（GFMs）是一种在广泛图数据上预训练的大模型，旨在适应各种  下游图学习任务。GFMs具备两个主要特征：涌现和同质化。涌现指的是随着模型规模的增加，可能会自发地展现出新的能力。同质化则表示模型的多功  能性，使其能够应用于多种不同的任务。
+    **现有工作分类**
+    现有工作根据对图神经网络（GNNs）和 LLMs 的依赖程度，被分为以下三类：
+    a. **GNN-based模型**：这些模型完全依赖于GNNs，通过预训练和微调来适应不同的图任务。它们通常使用图结构数据进行训练，并在特定的图任务上进  行微调。
+    b. **LLM-based模型**：这些模型完全依赖于LLMs，通过将图结构转换为文本形式，利用LLMs的强大语言理解和生成能力。它们通常使用文本数据进行训  练，并在特定的图任务上进行微调。
+    c. **GNN+LLM-based模型**：这些模型结合了GNNs和LLMs的优势，通过联合预训练和微调来适应不同的图任务。它们同时使用图结构数据和文本数据进行  训练，并在特定的图任务上进行微调。。
+
 4. **A Survey of Graph Meets Large Language Model: Progress and Future Directions.** `preprint`
 
     *Yuhan Li, Zhixun Li, Peisong Wang, Jia Li, Xiangguo Sun, Hong Cheng, Jeffrey Xu Yu.* [[PDF](https://arxiv.org/pdf/2311.12399.pdf)], 2023.11
+
+    本文是一篇关于如何将 LLMs 应用于图相关任务的综述文章。
+
+    **LLM作为增强器**
+    
+    方法介绍：
+   - LLM作为增强器的方法主要集中在利用LLMs的强大语言理解和生成能力来增强GNNs的性能。这通常涉及到生成额外的文本信息，如解释、知识实体或伪标签，这些信息可以用来丰富节点嵌入，从而提高GNNs在各种任务中的表现。
+  
+    优势：
+   - 丰富的语义信息：LLMs能够生成包含丰富语义信息的文本，这些信息可以帮助GNNs更好地理解节点和边的含义，从而提高分类和其他任务的准确性。
+   - 灵活性：这种方法允许GNNs利用LLMs的最新技术进步，通过插件式的方式快速适应新的任务和数据集。
+  
+    局限性：
+   - 计算成本：生成大量的文本信息可能需要大量的计算资源，尤其是在处理大规模图数据时。
+   - 数据稀疏性：在某些图数据集中，节点可能缺乏足够的文本信息，这限制了LLMs生成有用信息的能力。
+  
+    **LLM作为预测器**
+    方法介绍：
+   - LLM作为预测器的方法直接利用LLMs进行预测，这通常涉及到将图形数据转换为文本描述，以便LLMs可以直接处理。这种方法的核心思想是利用LLMs在处理文本方面的优势来处理图形数据。
+  
+    优势：
+   - 直接处理文本：LLMs可以直接处理文本信息，这使得它们在处理具有丰富文本属性的图数据时表现出色。
+   - 零样本学习：LLMs在零样本学习方面表现出色，这意味着它们可以在没有特定任务训练的情况下进行有效的预测。
+  
+    局限性：
+   - 图形结构的复杂性：将图形数据转换为文本可能会丢失一些结构信息，这可能会影响LLMs的预测性能。
+   - 长程依赖：LLMs可能难以捕捉到图形中的长程依赖关系，这在某些图形任务中可能是至关重要的。
+  
+    **GNN-LLM对齐**
+    方法介绍：
+   - GNN-LLM对齐的方法侧重于通过对齐技术语义上增强GNNs。这可能涉及到将GNNs和LLMs的嵌入空间对齐，以便它们可以协同工作。这种方法的目标是保留每个Encoder的独特功能，同时在特定阶段协调它们的嵌入空间。
+  
+    优势：
+   - 互补性：GNNs和LLMs可以互补，GNNs擅长捕捉结构信息，而LLMs擅长处理文本信息，对齐可以使两者的优势得到充分利用。
+   - 灵活性：对齐方法可以根据具体任务的需求灵活调整，以达到最佳的性能。
+  
+    局限性：
+   - 数据稀缺性：对齐方法可能需要大量的带有标签的数据来进行有效的训练，而在某些领域，这样的数据可能很难获得。
+   - 模型复杂性：对齐方法可能涉及到复杂的模型架构和训练过程，这可能会增加实现和部署的难度。
+  
+    **其他**
+    方法介绍：
+   - 其他类别包括那些难以归类到上述三个主要类别的模型。这些方法可能涉及到LLMs的其他应用，如作为注释器、控制器或样本生成器。
 
 
 ## Pure Graphs
@@ -96,114 +176,413 @@ Table 3 in our survey paper [Large Language Models on Graphs: A Comprehensive Su
 
     *Heng Wang, Shangbin Feng, Tianxing He, Zhaoxuan Tan, Xiaochuang Han, Yulia Tsvetkov.* [[PDF](https://browse.arxiv.org/pdf/2305.10037.pdf)] [[Code](https://github.com/Arthur-Heng/NLGraph)], 2023.5, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
 
+    本文提出了一种新的基准测试NLGraph，旨在评估 LLMs 在处理**自然语言描述的图形问题**方面的能力。NLGraph包含了29,370个问题，覆盖了从简单到复杂的八个**图形推理任务**。研究者们使用GPT-3和GPT-4模型进行了实验，并采用了不同的提示技术来提高模型的图形推理能力。
+
+    研究结果表明，LLMs在简单的图形推理任务上表现出了初步的图形推理能力，但在更复杂的任务上，高级提示方法的效果并不明显，甚至可能产生反作用。此外，LLMs在面对问题设置中的偶然相关性时表现出脆弱性，这表明它们可能依赖于某些错误的相关性来进行推理。
+
+    为了解决这些问题，研究者们提出了两种基于指令的提示方法：Build-a-Graph Prompting和Algorithmic Prompting。这两种方法通过提供额外的指导来帮助LLMs更好地理解和解决图形问题。实验结果显示，这些方法在多个任务上显著提高了LLMs的性能。
+
+    - **Build-a-Graph Prompting (BAG)**
+    Build-a-Graph Prompting (BAG) 是一种旨在提高语言模型处理图形问题能力的提示技术。这种方法的核心思想是在解决具体问题之前，先将文本描述的图形映射到基于概念的空间中。具体来说，BAG 通过在图形的文本描述之后附加一个指令 "Let's construct a graph with the nodes and edges first." 来引导语言模型首先构建出图形的结构。这样做可以帮助语言模型消化图形信息，将其映射到概念空间中，并为即将到来的查询做好准备。
+    - **Algorithmic Prompting**
+    Algorithmic Prompting 是另一种提示技术，它通过提供算法细节来帮助语言模型生成合理且准确的解决方案。这种方法假设为了让语言模型能够生成正确的解决方案，它们需要回顾并复述与给定任务相关的算法。例如，在最短路径任务中，可以通过添加 "We can use a Depth-First Search (DFS) algorithm..." 来引导语言模型使用深度优先搜索算法。类似地，对于其他图形推理任务，也可以在各自的提示中提供相应的算法描述。Algorithmic Prompting 的目的是在实际解决问题之前，赋予语言模型对如何解决问题的一般理解。
+    - **结合使用**
+    这两种提示技术可以与上下文学习和思维链提示结合使用。在实验中，研究者们将这两种方法与思维链提示结合，并在NLGraph基准测试的三个代表性任务上进行了评估。结果表明，在相对较容易的图形推理任务上，这两种基于指令的提示技术带来了3.07%到16.85%的性能提升。然而，在更复杂的Hamilton路径任务上，这两种提示方法的效果并不明显。这表明，尽管这些简单指令能够提高语言模型在较容易任务上的图形推理能力，但如何在更复杂的图形推理任务上提高它们的表现仍然是一个开放的研究问题。
+
 2. **GPT4Graph: Can Large Language Models Understand Graph Structured Data ? An Empirical Evaluation and Benchmarking.** `preprint`
 
     *Jiayan Guo, Lun Du, Hengyu Liu, Mengyu Zhou, Xinyi He, Shi Han.* [[PDF](https://arxiv.org/abs/2305.15066)], 2023.5, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
+
+    本文主要探讨了大型语言模型（LLM）在理解图结构数据方面的能力。研究者们通过一系列实验，评估了LLM在处理不同类型图数据任务中的表现，并提出了一个新的框架，将LLM与图结构数据相结合，以提高它们在广泛图挖掘任务中的协同能力。此外，研究者们还建立了一个基准测试，涵盖了十个常见场景，以评估语言模型处理与图相关的任务的能力。
+
+    **框架实现**
+    研究者们提出的框架旨在将大型语言模型（LLM）与图结构数据相结合，以提高它们在图挖掘任务中的表现。以下是框架实现的关键步骤：
+   1. 图描述语言：首先，研究者们将图数据转换为图描述语言（GDL），这是一种可以被LLM理解的格式。这包括使用邻接表、边列表、GML和GraphML等不同的图描述语言。
+   2. 提示处理器：然后，提示处理器将用户查询和GDL结合起来，形成LLM的输入。这个过程可能涉及到手动提示和自我提示策略，以及不同的图描述语言。
+   3. 推理和生成答案：LLM根据输入进行推理，并生成答案。在推理过程中，LLM可能会生成中间输出，这些输出需要由提示处理器处理，以形成新的输入给LLM。
+   4. 自我提示：在某些情况下，给定的图上下文可能包含较少有用或冗余的信息。因此，需要LLM进行自我提示，以获取更多信息或消除给定输入中的无关信息。
+   5. 上下文总结和格式解释：LLM可以生成图的上下文总结，提取关键特征，如重要节点、边或子图。此外，LLM还可以自己生成格式解释，以获得更多上下文信息。
+   
+    **任务系列**
+    研究团队开发了一系列任务，这些任务覆盖了十个常见的场景，用于检查LLM处理涉及图数据的任务的能力。以下是任务系列的详细介绍：
+    1. 结构理解任务：
+       - 图大小检测：评估LLM确定图中节点和边数量的能力。
+       - 度检测：评估LLM理解节点在图中的上下文相关性，即节点度的能力。
+       - 边检测：评估LLM识别给定节点的邻近节点的能力。
+       - 属性检索：评估LLM检索有关节点的特定信息，如节点属性的能力。
+       - 直径计算：评估LLM计算图直径的能力，即图中最长的最短路径。
+       - 聚类系数计算：评估LLM计算图的聚类系数的能力，这是一个衡量图中节点聚集程度的指标。
+    2. 语义理解任务：
+       - 知识图谱问答（KGQA）：评估LLM回答与知识图谱相关的问题的能力。
+       - 图查询语言生成（GQL Generation）：评估LLM生成满足用户需求的图查询语言的能力。
+       - 节点分类：评估LLM根据节点的属性或结构特征对图中的节点进行分类的能力。
+       - 图分类：评估LLM对整个图进行分类的能力，这需要LLM理解和应用图的结构和属性特征。
+
+    这些任务的设计旨在全面评估LLM在处理图数据方面的性能，并为未来的研究提供基准和方向。
 
 3. **Evaluating Large Language Models on Graphs: Performance Insights and Comparative Analysis.** `preprint`
 
     *Chang Liu, Bo Wu.* [[PDF](https://arxiv.org/abs/2308.11224)] [[Code](https://github.com/Ayame1006/LLMtoGraph)], 2023.8, [[PDF](https://arxiv.org/abs/2305.15066)], 2023.5, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
 
+    本文系统地**评估了 LLMs 在理解和处理图数据方面的能力**。研究者们通过设计一系列基于图拓扑的问题来测试四种不同的LLMs，包括GPT-3.5-turbo、GPT-4、CalderaAI/30B-Lazarus和TheBloke/Wizard-Vicuna-13B-Uncensored-HF。评估使用了四个维度的指标：理解力、正确性、忠实度和修正能力。
+
+    文章中提到，为了将图数据输入到 LLMs 中，研究者们采用了**节点列表和边列表**的形式来表示图数据。这些列表以纯文本格式呈现，其中节点和边都按照数值顺序组织。具体来说：
+
+    1. 节点列表：包含图中所有节点的列表。
+    2. 边列表：包含图中所有边的列表，每条边由两个节点组成，表示这两个节点之间的连接。
+
+    结果表明：
+    1. LLMs能够有效地理解自然语言中的图数据，并与图拓扑进行推理。
+    2. GPT模型能够生成逻辑连贯的结果，在正确性方面优于其他替代模型。3. 所有检查过的LLMs在结构推理方面都面临挑战，像零样本思维链和少量样本提示这样的技术显示出效果减弱。
+    4. GPT模型在多答案任务中经常产生错误答案，引起对忠实度的担忧。
+    5. GPT模型对其输出表现出过高的信心，这可能阻碍了它们的修正能力。
+
 4. **Talk Like A Graph: Encoding Graphs For Large Language Models.** `preprint`
 
     *Bahare Fatemi, Jonathan Halcrow, Bryan Perozzi.* [[PDF](https://arxiv.org/pdf/2310.04560.pdf)], 2023.10, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
+
+    文章发现LLM在图推理任务上的表现受到三个基本层面的影响：（1）图编码方法，（2）图任务本身的性质，以及（3）有趣的是，所考虑图的结构本身。
+
+    **图编码方法的深入研究**
+    1. 节点和边的编码：研究了多种节点和边的编码技术，包括整数编码、英文名字、电视角色名、政治家名字等，以及不同的边表示方法，如括号、友谊、作、社会网络、箭头和事件。
+    2. 图编码函数：开发了一系列图编码函数，结合节点和边的编码，如邻接、件、合作、友谊、社交网络、政治家和专家编码。
+    3. 编码函数的效果评估：通过实验评估了不同编码函数在基本图任务上的性能， 如边存在性、节点度数、节点计数、边计数、连接节点和环检查。
+    图任务性质的影响
+    4. 基本图任务的挑战：研究了LLM在执行基本图任务时的表现，发现LLM在这些任务上通常表现不佳，尤其是在需要多步推理的任务上。
+    5. 提示技术的选择：探索了不同的提示技术，如零次提示、少样本学习、链式思 维提示等，以找到最适合特定图任务的提示方法。
+    6. 任务难度与模型性能的关系：分析了任务难度对LLM性能的影响，发现简单任务可能不需要复杂的提示技术，而复杂任务则可能受益于多步推理或示例引导。
+
+    **图结构的作用**
+    1. 图生成算法：使用了多种图生成算法，如Erdos-Rényi、    Barabási-Albert、随机块模型等，来创建具有不同特性的图。
+    2. 图结构对推理的影响：研究了不同图结构对LLM推理能力的影响，发现图的特性（如连通性、度分布）会影响LLM的性能。
+    3. 图结构的多样性：强调了在评估LLM图推理能力时考虑图结构多样性的必要性，以避免评估偏差并提供更现实的基准测试。
+
 
 5. **GraphLLM: Boosting Graph Reasoning Ability of Large Language Model.** `preprint`
 
     *Ziwei Chai, Tianjie Zhang, Liang Wu, Kaiqiao Han, Xiaohai Hu, Xuanwen Huang, Yang Yang.* [[PDF](https://arxiv.org/pdf/2310.05845.pdf)] [[Code](https://github.com/mistyreed63849/graph-llm)], 2023.10, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
 
+    本文提出了一种名为GraphLLM的方法，旨在提高 LLMs 在图数据推理方面的能力。
+
+    GraphLLM模型结构主要包括三个主要步骤，分别是节点理解（Node Understanding）、结构理解（Structure Understanding）和图增强的前缀调整（Graph-enhanced Prefix Tuning）。下面详细介绍这三个部分：
+   1. **节点理解**（Node Understanding）
+    节点理解模块使用文本变换器 Encoder-Decoder 来从节点的文本描述中提取对解决图推理任务至关重要的语义信息。Encoder 首先对节点描述应用自注意力机制，生成一个捕获与图推理任务相关的语义含义的上下文向量。随后，Decoder通过上下文向量和查询之间的交叉注意力产生节点表示。
+   2. **结构理解**（Structure Understanding）
+    结构理解模块使用 Graph Transformer 来学习图结构。在GraphLLM框架中，Graph Transformer 的核心优势在于它将节点信息和结构信息解耦。Graph Transformer 主要由两个关键设计组成：位置编码和图上的注意力机制。
+   3. **图增强的前缀调整**（Graph-enhanced Prefix Tuning）
+    为了在图推理任务中生成人类语言响应，LLMs在调整过程中使用从图表示派生的图增强可调前缀。具体来说，图增强前缀通过将**图表示**应用 **Linear Projector** 获得，其中利用一个**转换维度**的矩阵。然后，这个前缀被**添加到LLMs的每一层注意力**中。
+
+
 6. **LLM4DyG: Can Large Language Models Solve Problems on Dynamic Graphs?.** `preprint`
 
     *Zeyang Zhang, Xin Wang, Ziwei Zhang, Haoyang Li, Yijian Qin, Simin Wu, Wenwu Zhu* [[PDF](https://arxiv.org/pdf/2310.17110.pdf)] [[Code]()], 2023.10, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
+    
+    文章首次提出了评估LLMs在动态图上空间-时间理解能力的基准测试。文章提出了分离空间-时间思维（DST2）的方法，以增强LLMs的空间-时间理解能力。主要观察结果是：
+    1) LLMs在动态图上具有初步的空间-时间理解能力；
+    2) 随着图的大小和密度增加，动态图任务对LLMs的难度逐渐增加，但对时间跨度和数据生成机制不敏感；
+    3) 提出的DST2提示方法有助于提高LLMs在大多数任务上的空间-时间理解能力。
+
+    分离空间-时间思维（DST2）方法旨在增强 LLMs 在处理动态图时的**空间-时间理解能力**。**动态图数据**被转换为LLMs可以理解和处理的**文本形式**，使得模型能够执行与图相关的任务。该方法通过以下步骤实现：
+    1. 任务分解：将复杂的动态图问题分解为更简单的子任务，这些子任务分别关注空间或时间维度的信息。
+    2. 独立编码：对每个子任务进行独立编码，确保模型在处理空间信息时不会受到时间信息的干扰，反之亦然。
+    3. 交互融合：在独立编码的基础上，通过交互融合机制使模型能够在必要时整合空间和时间信息，以解决需要同时考虑空间和时间维度的问题。
+    4. 迭代优化：通过迭代优化过程不断调整模型的参数，以提高其在动态图上的空间-时间理解能力。
+    5. 实验验证：通过在LLM4DyG基准测试上进行实验，验证DST2方法的有效性。实验结果显示，DST2能够帮助LLMs在大多数任务上提高空间-时间理解能力。
+    DST2方法的关键在于通过分离和独立处理空间和时间信息，然后在需要时进行有效的整合，从而提高LLMs在动态图上的整体表现。
 
 7. **Which Modality should I use - Text, Motif, or Image? : Understanding Graphs with Large Language Models.** `preprint`
 
     *Debarati Das, Ishaan Gupta, Jaideep Srivastava, Dongyeop Kang* [[PDF](https://arxiv.org/pdf/2311.09862.pdf)] [[Code]()], 2023.11, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
 
+    本文探讨了如何将 LLMs 应用于图结构数据，特别是在节点分类任务中。研究者们提出了一种新的方法，通过结合不同的模态（文本、图像和图模态）以及提示来编码图结构，以便更好地利用LLMs处理复杂图的能力。他们还开发了一个名为GRAPHTMI的新基准测试，用于评估LLMs在图结构分析方面的性能。
+
+    研究的关键发现包括：
+
+    1. 图像模态在处理图相关任务时比文本模态更有效，因为它能够在保持关键信息的同时平衡 token 限制。
+    2. 图任务分类所选择的编码模态取决于任务的难度，这可以通过同质性和图模态的数量来评估。对于中等难度的任务，图像模态是最优的；而对于更难的任务，则是图模态。
+    3. 边编码函数、图结构和图采样技术等因素会影响使用文本模态进行节点分类的性能。
+    4. 与图模态计数信息相比，图模态附着信息对节点分类的影响更大。
+    5. 图像表示与人类可读性的关联对节点分类性能有积极影响。
+
+    在这项研究中，为了将不同模态的数据输入到 LLMs ，研究者们采用了以下方法：
+    1. 文本模态：将图中的节点映射到标签，并使用字典格式表示。不同的边编码表示被实验性地应用，例如邻接表或边列表，以提供局部上下文。这种方法允许LLMs通过文本描述来理解图的结构。
+    2. 图模态：通过识别未标记节点周围的网络模体（network motifs），并将这些模体作为图模体信息输入到GPT-4中。网络模体是社交和生物网络中常见的重复模式，它们有助于理解局部结构和行为。
+    3. 图像模态：使用图形渲染方法生成带有颜色编码节点的图的图像表示。这些图像被设计为具有高人类可读性，通过各种图像修改来提高。GPT-4V（一种多模态模型）被用来解释这些图图像，提供图结构的全局上下文。
+
+    具体来说，研究者们通过以下步骤将不同模态的数据输入到LLMs中：
+    - 文本编码：将图转换为文本序列，其中节点和边的信息被编码为易于LLMs处理的格式。
+    - 图模体编码：识别并提取图中的关键模体，然后将这些模体作为额外的信息输入到LLMs中，以帮助分类未标记的节点。
+    - 图像编码：生成图的视觉表示，并将其作为图像输入到支持图像处理的LLMs中，如GPT-4V。
+    通过这些方法，研究者们能够将图数据的不同方面以适合LLMs的形式呈现，从而评估LLMs在处理图结构数据时的性能和潜力。
+
 8. **GraphArena: Benchmarking Large Language Models on Graph Computational Problems.** `preprint`
 
     *Jianheng Tang, Qifan Zhang, Yuhan Li, Jia Li* [[PDF](https://arxiv.org/abs/2407.00379)] [[Code](https://github.com/squareRoot3/GraphArena)], 2024.7, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
 
+    本文介绍了一种名为GraphArena的基准测试工具，旨在通过图计算问题来评估 LLMs 的推理能力。
+    研究者们还测试了专门针对图问题进行微调的LLMs，如GraphWiz，但发现这些模型在GraphArena基准测试中的表现并不理想，这表明需要更深入的理解和更强的推理能力来解决图计算问题。
+
 9. **LLMs hallucinate graphs too: a structural perspective.** `preprint`
 
     *Erwan Le Merrer, Gilles Tredan* [[PDF](https://arxiv.org/abs/2409.00159)], 2024.9, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
+
+
+    本文探讨了 LLMs 在处理图结构数据时产生的幻觉现象，并提出了一种新的评估方法。作者首先介绍了LLMs在处理图结构时可能出现的错误输出，即“幻觉”。他们通过向LLMs请求著名的图结构（如Karate俱乐部图、悲惨世界图等），并将其输出与真实图进行比较，来观察LLMs的幻觉表现。
+    文章的主要贡献包括：
+    1. 拓扑幻觉的多样性观察：作者观察了不同LLMs在处理图结构时产生的拓扑幻觉，并发现所有测试的LLMs都存在一定程度的幻觉。
+    2. 图集距离（Graph Atlas Distance, GAD）的提出：为了量化LLMs的幻觉程度，作者提出了图集距离这一指标，它是基于图编辑距离的平均值，用于衡量LLMs输出图与标准图集中的图之间的差异。
+    3. 与幻觉排行榜的比较：作者将提出的GAD指标与现有的幻觉排行榜进行了比较，发现两者之间存在一定的相关性，这表明GAD可能是一个有效的评估工具。
+    此外，文章还讨论了LLMs在处理图结构时可能存在的问题，如过度拟合和推理能力不足。作者指出，LLMs需要改进对结构化数据的处理能力，以便更准确地生成图结构。
 
 ### <img src="./fig/star.svg" width="15" height="15" /> Heuristic Reasoning
 1. **StructGPT: A General Framework for Large Language Model to Reason over Structured Data.** `preprint`
 
     *Jinhao Jiang, Kun Zhou, Zican Dong, Keming Ye, Wayne Xin Zhao, Ji-Rong Wen.* [[PDF](https://arxiv.org/abs/2305.09645)] [[Code](https://github.com/RUCAIBox/StructGPT)], 2023.5, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
 
+    本文提出了一个名为StructGPT的通用框架，旨在提高 LLMs 处理结构化数据时的推理能力。作者受到工具增强研究的启发，开发了一个迭代阅读-推理（IRR）框架，该框架通过专门的接口从结构化数据中提取相关信息，并使LLMs能够集中精力进行推理。为了实现这一点，作者设计了一个调用-线性化-生成过程，帮助LLMs理解和操作结构化数据。
+
+    **调用阶段**
+    在调用阶段，框架会使用专门的接口来收集结构化数据中的相关信息。这可能涉及到从数据库中检索记录、从知识图谱中提取关系或从表格中选择特定的列。
+
+    **线性化阶段**
+    在线性化阶段，框架将收集到的结构化数据转换为LLMs能够理解的线性文本格式。这一步骤对于LLMs来说至关重要，因为它们通常只能处理平面的文本数据，而不是复杂的结构化数据。
+
+    **生成阶段**
+    在生成阶段，LLMs基于线性化的数据进行推理，并生成答案。这个过程可能会涉及到多轮的交互，LLMs需要不断地调用接口、线性化数据并生成答案，直到得到最终的结果。
+
+
 2. **Think-on-Graph: Deep and Responsible Reasoning of Large Language Model on Knowledge Graph.** `preprint`
 
     *Jiashuo Sun, Chengjin Xu, Lumingyuan Tang, Saizhuo Wang, Chen Lin, Yeyun Gong, Lionel M. Ni, Heung-Yeung Shum, Jian Guo.* [[PDF](https://arxiv.org/abs/2307.07697)] [[Code](https://github.com/GasolSun36/ToG)], 2023.7, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
+
+
+    本文提出了一种名为Think-on-Graph（ToG）的算法框架，旨在通过结合 LLMs 和Knowledge Graphs来提高LLMs在复杂知识推理任务中的表现。ToG的核心思想是让LLM作为代理，在知识图谱上执行束搜索，动态探索推理路径，并根据检索到的知识做出决策。这种方法不仅提高了LLMs的深度推理能力，还增强了推理过程的可解释性和透明度。
+    文章的主要贡献包括：
+    1. LLM & KG范式：提出了一个新的LLM-KG集成范式，将LLM和KG紧密结合起来，互补各自的能力。
+    2. Think-on-Graph（ToG）框架：实现了一个算法框架，允许LLM在KG上进行深度和负责任的推理。
+    3. 性能提升：通过实验验证了ToG在多个数据集上的优越性能，特别是在多跳知识推理任务中。
+    4. 灵活性和效率：ToG提供了一个即插即用的框架，适用于不同的LLMs和KGs，无需额外训练。
+    5. 知识追溯和纠正：ToG能够追踪推理路径中的错误，并利用LLM的知识来纠正KG中的错误。
 
 3. **Exploring Large Language Model for Graph Data Understanding in Online Job Recommendations.** `preprint`
 
     *Likang Wu, Zhaopeng Qiu, Zhi Zheng, Hengshu Zhu, Enhong Chen.* [[PDF](https://arxiv.org/abs/2307.05722)] [[Code](https://github.com/WLiK/GLRec)], 2023.7, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
 
+    本文介绍了一种名为GLRec（Graph-understanding LLM Recommender）的开创性工作推荐模型，该模型将 LLMs 与行为图理解无缝集成。通过利用LLMs固有的语义深度和广泛知识，GLRec在推荐质量方面超越了现有基线。创新的**元路径提示构造器**有效地将复杂的交互细节转化为自然语言提示，从而细化个性化推荐策略。
+
+    GLRec（Graph-understanding LLM Recommender）模型的实现的个关键步骤：
+    - 行为图的构建
+      - 利用候选人和工作之间的交互记录（如面试、对话等）构建行为图。
+      - 行为图是一个异质图，包含不同类型的节点（如候选人、工作等）和边（如面试、对话等）。
+    - 元路径提示构造器（Meta-path Prompt Constructor）
+      - 将行为图中的元路径转换为自然语言描述，以便LLM可以理解和处理。
+      - 例如，给定一个元路径 $ c1 \rightarrow j1 \rightarrow c2 $，构造的提示模板为：“候选人 $ c1 $ 面试了职位 $ j1 $。这个职位与专注于计算机科学的求职者 $ c2 $ 进行了讨论。”
+
 4. **Knowledge Graph Prompting for Multi-Document Question Answering.** `AAAI2024`
 
     *Yu Wang, Nedim Lipka, Ryan Rossi, Alex Siu, Ruiyi Zhang, Tyler Derr.* [[PDF](https://arxiv.org/abs/2308.11730)] [[Code](https://github.com/YuWVandy/KG-LLM-MDQA)], 2023.8, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
+
+    本文提出了一种名为知识图谱提示（KGP）的方法，旨在提高 LLMs 在多文档问答（MD-QA）任务中的表现。MD-QA要求模型能够理解和整合来自多个文档的信息，这比传统的单文档问答更具挑战性。KGP方法通过构建知识图谱（KG）来实现这一点，其中节点代表文档中的段落或结构，边表示这些元素之间的语义或词汇相似性。
+    文章的主要贡献包括：
+    1. KG构建：提出了三种KG构建方法，这些方法将文档中的段落或结构作为节点，并根据它们之间的语义或词汇相似性或结构关系来建立边。通过这种方式，构建的KG能够捕捉到不同文档之间的逻辑关联。
+    2. 图遍历代理：设计了一个基于LLM的图遍历代理，该代理能够在KG中导航，选择最有可能帮助回答问题的节点。这个代理通过迭代地访问和评估候选邻居节点，逐步构建出一条通往答案的路径。
+    3. 性能验证：通过在多个数据集上的广泛实验，验证了KGP方法的有效性。实验结果表明，KGP在MD-QA任务上取得了显著的性能提升。
+    4. 案例研究：文章还提供了案例研究，展示了KGP在处理不同类型问题（如内容问题和结构问题）时的表现。
+    总的来说，这篇文章通过引入知识图谱和图遍历代理的概念，为LLMs在MD-QA任务中的应用提供了一种新的视角。这种方法不仅提高了LLMs在复杂问答任务中的性能，而且还展示了如何将图谱技术与LLMs相结合，以解决实际问题。
 
 5. **ChatRule: Mining Logical Rules with Large Language Models for Knowledge Graph Reasoning.** `preprint`
 
     *Linhao Luo, Jiaxin Ju, Bo Xiong, Yuan-Fang Li, Gholamreza Haffari, Shirui Pan.* [[PDF](https://arxiv.org/abs/2309.01538v3)] [[Code](https://github.com/RManLuo/ChatRule)], 2023.9, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
 
+
+    本文提出了一种新的框架ChatRule，旨在解决Knowledge Graphs中逻辑规则挖掘的问题。ChatRule的核心思想是利用 LLMs的能力来生成和评估逻辑规则。
+    1. 提出ChatRule框架：这是一个新颖的框架，它结合了LLMs的理解能力和KGs的结构信息来生成有意义的逻辑规则。
+    2. 端到端的管道：文章展示了一个端到端的管道，该管道利用LLMs的推理能力和KGs的结构信息来进行规则生成、规则排名和基于规则的逻辑推理。
+    3. 广泛的实验验证：在四个数据集上进行了广泛的实验，结果表明ChatRule在知识图谱补全和规则质量评估方面显著优于现有的最先进方法。
+    4. 规则质量评估：引入了支持度、覆盖率、置信度和PCA置信度等措施来评估规则的质量，并通过实验验证了这些措施的有效性。
+    5. 案例研究：展示了从不同数据集中挖掘出的代表性逻辑规则，这些规则既具有可解释性又具有高质量。
+    6. 参数分析：对超参数（如每个查询的规则样本数量和查询数量）进行了分析，以优化ChatRule的性能。
+    7. 成本效益分析：提供了挖掘规则的总体API成本统计，显示了ChatRule在低成本下能够挖掘大量有意义的规则。
+
 6. **Reasoning on Graphs: Faithful and Interpretable Large Language Model Reasoning.** `preprint`
 
     *Linhao Luo, Yuan-Fang Li, Gholamreza Haffari, Shirui Pan.* [[PDF](https://arxiv.org/abs/2310.01061)] [[Code](https://github.com/RManLuo/reasoning-on-graphs)], 2023.10, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
+
+
+    本文提出了一种名为“在图上推理”（RoG）的方法，旨在解决 LLMs 在推理过程中存在的知识缺失和幻觉问题。RoG方法通过结合Knowledge Graphs来增强LLMs的推理能力，具体包括以下几个方面：
+
+    1. 规划-检索-推理框架：RoG首先生成由知识图谱支持的关系路径作为规划，然后根据这些规划从知识图谱中检索出有效的推理路径，最后基于这些路径进行推理。
+    2. 规划优化：通过从知识图谱中提炼知识，RoG生成忠实的关系路径作为规划，以指导后续的推理过程。
+    3. 检索-推理优化：RoG使LLMs能够基于检索到的推理路径进行忠实推理，并生成可解释的结果。
+    4. 与任意LLMs的无缝集成：RoG的设计允许它在推理期间与任何大型语言模型无缝集成，无需重新训练。
 
 7. **Thought Propagation: An Analogical Approach to Complex Reasoning with Large Language Models.** `preprint`
 
     *Junchi Yu, Ran He, Rex Ying.* [[PDF](https://arxiv.org/abs/2310.03965)], 2023.10, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
 
+    本文提出了一种名为“思想传播”（Thought Propagation, TP）的新方法，旨在通过类比推理来提高 LLMs 在复杂推理任务中的表现。TP的核心思想是通过探索与输入问题相似的问题，并利用这些类似问题的解决方案来增强LLMs的推理能力。具体来说，TP包括以下几个步骤：
+
+    1. LLM Propose：生成一组与输入问题相关的类似问题。
+    2. LLM Solve：使用现有的提示方法（如Chain-of-Thought, CoT）解决输入问题及其类似问题。
+    3. LLM Aggregate：聚合来自类似问题的解决方案，以促进输入问题的解决。这可以通过生成新解决方案或制定高级计划来实现。
+    TP与现有的提示方法兼容，可以在不同的任务中即插即用地使用，减少了对特定任务提示工程的需求。文章通过在三个具有挑战性的任务上进行实验，验证了TP的有效性，包括最短路径推理、创意写作和LLM-Agent规划。实验结果表明，TP在这些任务上取得了显著的性能提升。
+
 8. **Large Language Models Can Learn Temporal Reasoning.** `preprint`
 
     *Siheng Xiong, Ali Payani, Ramana Kompella, Faramarz Fekri.* [[PDF](https://arxiv.org/abs/2401.06853)], 2024.1, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
+
+    本文提出了一种新的大型语言模型（LLM）框架，称为TG-LLM，旨在提高LLM在时间推理（TR）方面的性能。TG-LLM的核心思想是将文本转换为时间图（TG），然后在TG上执行推理。为了实现这一目标，作者首先构建了一个名为TGQA的合成数据集，该数据集是完全可控的，并且需要最小的监督。TGQA数据集用于微调LLM，以学习从文本到TG的翻译任务。
+
+    在TGQA数据集的基础上，作者进一步提出了两种方法来提高LLM在TG上的推理能力：Chain-of-Thought（CoT）引导和图数据增强。CoT引导通过生成可靠的中间步骤来增强监督微调，而图数据增强则通过引入噪声来提高模型在面对不完整或错误信息时的鲁棒性。
+
+    文本转换为时间图的过程涉及以下几个关键步骤：
+    1. 文本解析：首先，需要对输入的文本进行解析，提取出其中的时间相关的信息。这可能包括日期、时间点、持续时间、事件顺序等。
+    2. 构建时间图：接着，将解析出的时间信息构建成时间图（Temporal Graph, TG）。时间图是一种图结构，其中节点代表时间点或时间段，边代表事件之间的关系，如先后顺序、重叠等。
+    3. 节点和边的定义：在时间图中，每个节点都包含有关时间点或时间段的详细信息，如开始时间、结束时间等。边则表示节点之间的关系，可以是因果关系、顺序关系或其他类型的关系。
+    4. 图的优化：构建时间图后，可能需要对其进行优化，以确保图的准确性和完整性。这可能包括修正错误的时间关系、填补缺失的信息等。
+    5. 推理和验证：最后，使用时间图进行推理，验证时间关系是否合理。这可以通过比较时间图中的信息与已知事实或规则来进行。
+    整个过程需要综合运用自然语言处理（NLP）技术和图论知识，以确保时间图的准确构建和有效推理。
 
 9. **Exploring the Limitations of Graph Reasoning in Large Language Models.** `preprint`
 
     *Palaash Agrawal, Shavak Vasania, Cheston Tan.* [[PDF](https://arxiv.org/abs/2402.01805)], 2024.2, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
 
+    本文探讨了大型语言模型（LLMs）在图推理任务中的表现，特别是在处理结构化数据方面的能力。
+    研究者们设计了一系列复杂的图遍历问题，并对五种不同的LLMs进行了评估。他们发现，尽管LLMs在简单的图遍历任务上表现良好，但在更复杂的任务中，如加权和定向图遍历，它们的性能会下降。
+    此外，研究还揭示了LLMs在处理大规模图和节点顺序变化时的局限性，以及它们倾向于给出积极响应的偏见。
+    为了提高LLMs在图推理任务上的性能，研究者们提出了一种新的提示技术——PathCompare，该技术通过比较不同路径的成本来简化推理问题。
+    在这项工作中，研究者们采用了以下方法将图输入到大型语言模型（LLMs）中：
+    1. 图表示：研究者们选择使用邻接矩阵来表示图，而不是传统的邻接列表。邻接矩阵是一种更为紧凑的表示方式，它能够更好地测试LLMs执行多跳推理和跟踪值状态的能力。
+    2. 节点标签：图中的节点被标记为字母序列（A, B, C, ...），这样可以避免直接列举节点连接，从而保持图结构而不显式地展平和枚举节点/连接。
+    3. 自动生成图和解决方案：研究者们自动生成图及其对应的解决方案作为邻接矩阵，其中0表示两个节点之间没有连接，1表示有连接。这确保了每个问题只有一个唯一的解决方案，以便于评估。
+    4. 提示技术：为了保持图的结构并避免将其简化为一维语言语义，研究者们在提示中使用了邻接矩阵的形式。他们要求模型找到从节点A到最后一个节点的最短路径，并返回节点序列作为响应。
+
+
 10. **Rendering Graphs for Graph Reasoning in Multimodal Large Language Models.** `preprint`
 
     *Yanbin Wei, Shuai Fu, Weisen Jiang, James T. Kwok, Yu Zhang.* [[PDF](https://arxiv.org/abs/2402.02130)], 2024.2, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
+
+    本文提出了一种名为GITA（Graph to Visual and Textual Integration）的端到端框架，旨在通过整合视觉信息来提升语言模型在图推理任务中的表现。GITA框架包括四个主要组件：图可视化器、图描述器、任务特定的问题器和视觉语言模型（VLM）推理器。该框架能够将图结构转换为定制的视觉图像，并生成相应的文本描述，然后通过问题器将这些描述组织成提示指令，最后由VLM执行视觉语言图推理。
+
+    为了评估GITA的有效性，作者创建了一个名为GVLQA的数据集，这是第一个用于一般图推理目的的视觉语言问答数据集。GVLQA包含526K个实例，覆盖了七种代表性的图推理任务。实验结果表明，GITA在GVLQA数据集和五个真实世界数据集上的表现均优于主流的大型语言模型（LLMs）。
+
+    文章还探讨了视觉图增强策略的影响，特别是布局增强对提升视觉基础图推理性能的显著效果。此外，作者还讨论了GITA在处理大规模图时的可扩展性和灵活性，以及其作为预训练数据集的潜在应用价值。
+
+    *将 Graph 转换为 Image 从而使多模态 LLM 尝试理解*
 
 11. **Graph-enhanced Large Language Models in Asynchronous Plan Reasoning.** `preprint`
 
     *Fangru Lin, Emanuele La Malfa, Valentin Hofmann, Elle Michelle Yang, Anthony Cohn, Janet B. Pierrehumbert.* [[PDF](https://arxiv.org/abs/2402.02805)], 2024.2, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
 
+    本文通过引入图增强技术，显著提升了大型语言模型在处理**异步计划推理任务**中的表现。主要工作包括：
+    1. 定义异步规划任务：提出了一个包含顺序和并行动作的复杂规划任务定义，并将其形式化为在有向无环图（DAG）上寻找最长路径的优化问题。
+    2. 创建AsyncHow基准数据集：自动生成了一个包含1.6K个高质量实例的新型异步规划基准数据集，用于评估模型性能。
+    3. 提出Plan Like a Graph (PLaG)方法：开发了一种新颖的提示技术，通过将规划问题表示为图结构，显著提高了模型在所有测试复杂度水平上的性能。
+    4. 评估模型性能：使用GPT-3.5、GPT-4等模型在AsyncHow数据集上进行评估，发现即使是最先进的模型在没有详细解决方案说明的情况下也表现不佳。
+    文章强调了在实际应用中，LLMs可能需要外部辅助工具或特定的提示策略来有效执行复杂的规划任务。
+
 12. **Microstructures and Accuracy of Graph Recall by Large Language Models.** `preprint`
 
     *Yanbang Wang, Hejie Cui, Jon Kleinberg.* [[PDF](https://arxiv.org/abs/2402.11821)], 2024.2, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
+
+    本文提出了图回忆作为理解大型语言模型（LLMs）图推理能力的一个简单而基础的任务，并通过与现有认知科学研究人类图回忆能力的联系，设计并进行了系统性的研究。
+    研究内容包括LLMs在图回忆中的准确性和有偏见的微结构，并将结果与人类进行比较。文章的主要贡献包括：
+
+    1. 提出了图回忆作为一个简单但基本的任务，用于理解LLMs的图推理能力，并探讨了其与人类图回忆能力研究的联系。
+    2. 首次设计并进行了系统性的研究，探讨了LLMs在图回忆中的准确性和有偏见的微结构，并与人类进行了比较。
+    3. 在图回忆中发现了LLMs的一些重要和有趣的发现，我们发现LLMs不仅在图回忆方面表现不佳，而且倾向于更喜欢三角形和交替的2路径。
+    此外，我们还发现更先进的LLMs对现实世界图来自的领域有着惊人的依赖性——当图以与其原始领域一致的语言风格叙述时，它们能获得最佳的回忆准确性。
 
 13. **Structure Guided Prompt: Instructing Large Language Model in Multi-Step Reasoning by Exploring Graph Structure of the Text.** `preprint`
 
     *Kewei Cheng, Nesreen K. Ahmed, Theodore Willke, Yizhou Sun.* [[PDF](https://arxiv.org/abs/2402.13415)], 2024.2, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
 
+    本文提出了一种名为“结构引导提示”（Structure Guided Prompt）的新方法，旨在提高大型语言模型（LLMs）在**多步推理任务中**的表现。该方法通过以下步骤实现：
+    1. **图构建**：首先，将非结构化的文本转换成图结构，其中节点代表实体，边代表实体间的关系。
+    2. **任务规划**：其次，根据具体任务制定导航图的策略，这些策略独立于底层数据，但与任务相关。
+    3. **执行与推理**：最后，根据制定的策略执行计划，通过遍历图来逐步推导出答案。
+    文章还探讨了不同类型的推理任务，包括关系预测、动态知识图谱上的实体预测、复杂实体预测、图排序、图查询和逻辑推理。通过在多种数据集上的实验，作者展示了他们的方法如何显著提高LLMs在这些任务上的性能。
+    此外，文章讨论了LLMs在处理具有显著关系复杂性的现实世界场景时的局限性，并提出了未来研究的方向，例如结合各种模型以创建无缝的NLP管道，以更好地捕捉和澄清文本数据中的复杂关系。
+    *将文本转换为图结构并利用图的特性来指导推理过程。文章的方法不是直接将图结构输入LLM中，而是利用LLM的能力来构建图，并在图上进行推理。*
+
 14. **GraphInstruct: Empowering Large Language Models with Graph Understanding and Reasoning Capability.** `preprint`
 
     *Zihan Luo, Xiran Song, Hong Huang, Jianxun Lian, Chenhao Zhang, Jinqi Jiang, Xing Xie, Hai Jin.* [[PDF](https://arxiv.org/abs/2403.04483)], 2024.3, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
+
+    本文提出了一种新的基准测试GraphInstruct，旨在评估和增强大型语言模型（LLMs）对图数据的理解和推理能力。GraphInstruct包含了21个经典的图推理任务，涵盖了从基础到复杂的多种任务类型。作者通过在GraphInstruct上进行指令调整，构建了GraphLM模型，该模型在多个经典图推理任务上表现出色，与ChatGPT相当甚至更优。为了进一步提升推理能力，作者提出了步长掩码训练策略，并构建了GraphLM+模型，该模型在图推理任务上表现更加出色。
+
+    文章还探讨了LLMs在处理不同图描述语言、节点表示方法以及不同图大小时的泛化能力。实验结果表明，GraphLM在这些方面均优于基线模型，尤其是在面对未见过的图描述语言和节点表示方法时，仍能保持较高的性能。   
 
 15. **Call Me When Necessary: LLMs can Efficiently and Faithfully Reason over Structured Environments.** `preprint`
 
     *Sitao Cheng, Ziyuan Zhuang, Yong Xu, Fangkai Yang, Chaoyun Zhang, Xiaoting Qin, Xiang Huang, Ling Chen, Qingwei Lin, Dongmei Zhang, Saravan Rajmohan, Qi Zhang.* [[PDF](https://arxiv.org/abs/2403.08593)], 2024.3, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
 
+    本文提出了一种名为Reasoning-Path-Editing（Readi）的新颖框架，旨在提高大型语言模型（LLMs）在结构化环境中的推理能力。
+    
+    Readi的核心思想是让LLMs首先生成一个推理路径，然后仅在必要时对其进行编辑。
+    
+    这种方法减少了与环境的逐步交互次数，从而提高了推理效率。
+    
+    文章通过在多个知识图谱问答（KGQA）和表格问答（TableQA）数据集上的实验，证明了Readi的有效性和优越性。
+    
+    Readi不仅超越了现有的LLM-based方法，而且在某些情况下甚至超过了经过微调的方法。
+    
+    此外，Readi还展示了其在处理大规模结构化环境时的鲁棒性和灵活性。
+    
+    文章还讨论了Readi的局限性，并指出了未来工作的方向，例如测试Readi与其他LLMs的兼容性，以及将其应用于数据库查询和其他推理领域。
+
 16. **Exploring the Potential of Large Language Models in Graph Generation.** `preprint`
 
     *Yang Yao, Xin Wang, Zeyang Zhang, Yijian Qin, Ziwei Zhang, Xu Chu, Yuekui Yang, Wenwu Zhu, Hong Mei.* [[PDF](https://arxiv.org/abs/2403.14358)], 2024.3, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
+
+    本文探讨了大型语言模型（LLMs）在图生成任务中的应用潜力，这是一个尚未充分研究的领域。
+    
+    作者提出了LLM4GraphGen方法，通过设计一系列任务来评估LLMs在理解和应用各种图结构规则、捕捉结构类型分布以及利用领域知识进行基于属性的图生成方面的能力。
+    
+    研究结果表明，尤其是GPT-4，在图生成任务中展现出了初步的能力，包括基于规则和基于分布的生成。
+    
+    同时，作者也发现了一些流行的提示方法并不总是能够提高图生成的性能。
+    
+    此外，LLMs在生成具有特定属性的分子方面也显示出了潜力。这些发现不仅为设计更好的基于LLMs的图生成模型提供了基础，也为未来的研究和实际应用提供了宝贵的见解。
 
 17. **GraphInsight: Unlocking Insights in Large Language Models for Graph Structure Understanding.** `preprint`
 
     *Yukun Cao, Shuo Han, Zengyi Gao, Zezhong Ding, Xike Xie, S. Kevin Zhou.* [[PDF](https://arxiv.org/abs/2409.03258)], 2024.5, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
 
+    本文提出了一种名为GraphInsight的新框架，旨在提高大型语言模型（LLMs）对图形结构的理解能力。该框架针对LLMs在处理图形描述序列时遇到的“位置偏差”问题，即模型在序列的不同位置上记忆性能不一致。GraphInsight通过两个主要策略来解决这一问题：
+
+    1. 重要性基础的宏观级别图形理解：将图形描述中的关键信息重新组织，使其与LLMs在序列头部和尾部（强记忆区域）的自然语言理解能力相匹配。
+    2. 基于RAG的微观级别图形理解：为LLMs在序列中的弱记忆区域构建一个轻量级的外部知识库，以补偿这些区域的记忆不足。 
+
 18. **Can Large Language Models Analyze Graphs like Professionals? A Benchmark, Datasets and Models.** `NeurIPs`
 
     *Xin Li, Weize Chen, Qizhi Chu, Haopeng Li, Zhaojun Sun, Ran Li, Chen Qian, Yiwei Wei, Zhiyuan Liu, Chuan Shi, Maosong Sun, Cheng Yang.* [[PDF](https://arxiv.org/abs/2409.19667)], 2024.9, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
 
+    本文提出了一种新的方法，旨在评估和提升大型语言模型（LLMs）在图分析方面的能力。
+    
+    作者首先介绍了ProGraph基准测试，它包含了三类图任务，旨在通过编程而非直接推理来解决问题。
+    
+    研究发现，当前的LLMs在图分析方面的表现不尽如人意，准确率仅为36%。
+    
+    为了解决这一问题，作者提出了LLM4Graph数据集，包括从六个常用图库中爬取的文档和自动生成的代码。
+    
+    通过使用这些数据集，作者展示了如何通过文档检索和代码微调来显著提高LLMs在图分析任务上的性能。
+    
+    此外，作者还讨论了LLMs在处理结构化数据方面的潜力，并提供了改进后的开源模型供未来研究使用。
+
 19. **Graph Linearization Methods for Reasoning on Graphs with Large Language Models.** `preprint`
 
     *Christos Xypolopoulos, Guokan Shang, Xiao Fei, Giannis Nikolentzos, Hadi Abdine, Iakovos Evdaimon, Michail Chatzianastasis, Giorgos Stamou, Michalis Vazirgiannis.* [[PDF](https://arxiv.org/abs/2410.19494)], 2024.10, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
+
+    本文探讨了如何将图数据转换为线性序列，以便大型语言模型（LLM）能够处理图机器学习任务。
+    
+    作者提出了几种图线性化方法，包括基于图中心性、退化性和节点重标记的技术，以捕捉自然语言中的局部依赖性和全局对齐特性。
+    
+    通过在合成图数据集上的实验，作者发现这些方法在图推理任务中比随机线性化方法表现更好。
+    
+    这项工作不仅为LLM提供了新的图表示方法，而且为将图机器学习与多模态处理趋势相结合奠定了基础。
+    
+    尽管存在一些局限性，如考虑的结构特征有限、数据集多样性不足和任务种类狭窄，但本文的研究为未来在图数据处理领域的研究提供了有价值的见解和方向。
 
 
 ### <img src="./fig/star.svg" width="15" height="15" /> Algorithmic Reasoning
@@ -211,13 +590,61 @@ Table 3 in our survey paper [Large Language Models on Graphs: A Comprehensive Su
 
     *Jiawei Zhang.* [[PDF](https://arxiv.org/abs/2304.11116)] [[Code](https://github.com/jwzhanggy/Graph_Toolformer)], 2023.4, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
 
+    本文提出了一种名为GRAPH-TOOLFORMER的新框架，旨在通过结合大型语言模型（LLM）和图推理能力来解决复杂的图数据问题。
+    作者提出了通过ChatGPT增强的提示来训练LLM，使其能够使用外部图推理API工具。
+
+    具体来说，GRAPH-TOOLFORMER通过以下步骤实现：
+
+    1. 提示数据注释与增强：使用ChatGPT根据人类编写的指令和少量提示示例，生成大量包含图推理API调用的提示数据集。
+    2. LLM微调：利用生成的提示数据集对现有的预训练LLM进行微调，如GPT-J和LLaMA，使它们学会如何在输出中使用图推理工具。
+    3. 推理与执行：微调后的LLM能够自动在输出语句中插入适当的图推理API调用，并执行这些调用以生成推理结果。
+    
+    文章还详细介绍了GRAPH-TOOLFORMER框架的技术细节，包括API调用的表示、图推理任务的分类、提示数据集的生成和微调过程。此外，作者还展示了GRAPH-TOOLFORMER在多个图推理任务上的有效性，包括基本的图属性推理、文献主题推理、分子图功能推理、推荐系统推理、社交网络社区推理和知识图谱推理。
+
+    最后，文章讨论了GRAPH-TOOLFORMER在未来研究中的潜在方向，如提高预训练图神经网络（GNN）的可迁移性、集成LLM和GNN的学习、提高模型效率以及探索多样化的应用场景等。
+
+    外部图推理API工具是一种专门设计用于处理图数据并执行图推理任务的软件接口。
+    这些API工具通常由一系列函数和方法组成，能够接收输入数据（如图结构、节点和边的信息），并根据特定的算法或模型返回推理结果。
+    例如，Graph-ToolFormer框架中提到的外部图推理API工具可能包括用于执行图遍历、最短路径计算、社区检测、图聚类等任务的函数。
+    这些工具通常由专业的图分析库或图数据库提供，如NetworkX、Graph-tool、Neo4j等。
+
+    *通过ChatGPT增强的提示来教授LLM使用外部图推理API工具*
+
 2. **Graph Chain-of-Thought: Augmenting Large Language Models by Reasoning on Graphs.** `preprint`
 
     *Bowen Jin, Chulin Xie, Jiawei Zhang, Kashob Kumar Roy, Yu Zhang, Suhang Wang, Yu Meng, Jiawei Han.* [[PDF](https://arxiv.org/abs/2404.07103)] [[Code](https://github.com/PeterGriffinJin/Graph-CoT)] [[Data](https://huggingface.co/datasets/PeterJinGo/GRBench)], 2024.4, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
 
+    本文研究了如何通过外部图作为知识源来增强大型语言模型（LLMs）。
+    首先，作者手动构建了一个名为GRBENCH的图推理基准数据集，该数据集包含来自五个领域的10个图，以及1,740个可以通过这些图的知识回答的问题。
+    接着，作者提出了一种名为Graph Chain-of-thought（GRAPH-CoT）的框架，该框架通过迭代过程使LLMs能够在图上进行推理。
+    每个迭代包括三个子步骤：推理、交互和执行。
+    每个GRAPH-CoT迭代包括以下三个子步骤：
+    1. LLM推理（Reasoning）：
+       - 在这个阶段，LLM基于当前的信息或之前迭代的上下文进行推理。
+       - LLM需要确定为了回答问题，还需要哪些额外的信息，并且可能需要从图中获取哪些信息。
+       - 例如，给定一个问题“谁是论文《Deep Residual Learning for Image Recognition》的作者？”，LLM可能会推理出需要找到与该论文相关的节点。
+    2. LLM-图交互（Interaction）：
+       - 根据推理步骤的结果，LLM生成与图交互所需的请求，以便从图中检索相关信息。
+       - 这可能包括调用预定义的图函数，如RetrieveNode（根据关键词检索相关节点）、NodeFeature（返回节点的特定特征信息）、NeighborCheck（返回节点的邻接信息）和NodeDegree（返回节点的度数）。
+       - 继续上面的例子，LLM可能会生成一个RetrieveNode函数调用，以找到论文标题对应的节点。
+    3. 图执行（Execution）：
+       - 在这个步骤中，执行之前步骤中生成的请求，从图中检索相应的信息。
+       - 图执行的结果被返回给LLM，用于进一步的推理或作为最终答案。
+       - 如果找到了论文节点，图执行可能会返回节点的ID，然后LLM可以使用这个ID来进一步查询作者信息。
+    这三个步骤构成了一个迭代循环，LLM通过这个循环可以在图上逐步推理，直到得出最终答案。这种方法允许LLM以一种结构化和迭代的方式处理图数据，从而更有效地利用图中的知识。
+    通过在GRBENCH上的实验，作者展示了GRAPH-CoT的有效性，并分析了其在不同演示设置、LLM骨干和问题难度下的性能。
+    此外，作者还探讨了GRAPH-CoT的失败案例，并提出了未来的研究方向。
+
 3. **From Local to Global: A Graph RAG Approach to Query-Focused Summarization.** `preprint`
 
     *Darren Edge, Ha Trinh, Newman Cheng, Joshua Bradley, Alex Chao, Apurva Mody, Steven Truitt, Jonathan Larson.* [[PDF](https://arxiv.org/abs/2404.16130)], 2024.4, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
+
+    本文提出了一种名为Graph RAG的方法，旨在解决大型语言模型（LLMs）在处理全局问题时的局限性。
+    Graph RAG通过构建一个基于图的知识索引，将实体知识图与社区摘要相结合，以提高查询聚焦摘要（QFS）任务的性能。
+    这种方法首先从源文档中提取实体和关系，构建实体知识图，然后为紧密相关的实体组生成社区摘要。
+    当接收到查询时，Graph RAG会使用每个社区摘要生成部分响应，并将这些响应汇总成最终的全局响应。
+
+    *Graph RAG提供了一种新的方法来处理全局查询，通过结合知识图谱生成、检索增强生成（RAG）和查询聚焦摘要（QFS），支持人类对整个文本语料库的理解。*
 
 
 ## Text-Attributed Graphs
@@ -232,27 +659,79 @@ Table 7 in our survey paper [Large Language Models on Graphs: A Comprehensive Su
 
     *Zhuofeng Li, Zixing Gou, Xiangnan Zhang, Zhongyuan Liu, Sirui Li, Yuntong Hu, Chen Ling, Zheng Zhang, Liang Zhao.* [[PDF](https://arxiv.org/abs/2406.10310)] [[Code](https://github.com/Zhuofeng-Li/TEG-Benchmark/tree/main)] [[Dataset](https://huggingface.co/datasets/ZhuofengLi/TEG-Datasets/tree/main)], 2024.9,
 
+    本文介绍了一个名为TEG-DB的新数据集和基准测试，旨在推动文本边图（TEG）的研究。
+    TEG是一种图结构，其中**节点和边都带有自由形式的文本描述**，提供了关于实体之间复杂关系的丰富上下文信息。
+    文章首先指出现有TAG数据集的局限性，即它们通常只在节点上包含文本信息，而忽略了边上的文本信息。
+    为了解决这个问题，作者提出了TEG-DB，它包含了来自不同领域的大规模数据集，如图书推荐、电子商务、学术和社交网络。
+    这些数据集不仅在节点上有文本信息，而且在边上也有详细的文本描述。
+
+    文章还讨论了处理TEG的三种主要方法：基于PLM的方法、基于GNN的方法和将LLM作为预测器的方法。
+    通过广泛的实验，作者评估了这些方法在链接预测和节点分类任务上的性能，并分析了不同模型、不同规模的PLM生成的嵌入以及不同领域数据集的影响。
+    实验结果表明，使用边文本信息可以显著提高模型性能，尤其是在链接预测任务上。
+
 ### <img src="./fig/star.svg" width="15" height="15" /> LLM as Predictor (Node)
 #### Graph As Sequence (Node)
 1. **MATCH: Metadata-Aware Text Classification in A Large Hierarchy.** `WWW 2021`
 
     *Yu Zhang, Zhihong Shen, Yuxiao Dong, Kuansan Wang, Jiawei Han.* [[PDF](https://arxiv.org/abs/2102.07349)] [[Code](https://github.com/yuzhimanhua/MATCH)], 2021.2, ![](https://img.shields.io/badge/EncoderOnly-blue) ![](https://img.shields.io/badge/Medium-red)
 
+    本文提出了一种名为MATCH的多标签文本分类框架，该框架能够同时利用文档的元数据和标签层次结构。MATCH的核心贡献包括：
+    1. **问题形式化**：作者正式化了在大型标签层次结构中进行元数据感知文本分类的问题，这在现有研究中通常没有同时被建模。
+    2. **端到端框架**：MATCH是一个端到端的框架，它结合了文档元数据和大型标签层次结构来进行文本分类任务。
+    3. **元数据感知嵌入预训练**：MATCH通过在同一个潜在空间中预训练文本（即单词）和元数据的嵌入，并使用Transformer中的全连接注意力机制来捕捉单词和不同类型元数据之间所有成对关系，从而为每个文档生成包含其元数据编码的表达性表示。
+    4. **层次结构利用**：MATCH通过设计策略来通过其父标签正则化每个子标签的参数和输出概率，从而在参数空间和输出空间中利用标签层次结构。
+
+    *MATCH框架与图的关系主要体现在它如何利用图的概念和技术来整合元数据和标签层次结构，以及如何通过图嵌入和图注意力机制来提高文本分类的性能。*
+    *元数据：作者信息、发布场所、引用文献、参考文献、时间戳、地理位置等。*
+
 2. **QA-GNN: Reasoning with Language Models and Knowledge Graphs for Question Answering.** `NAACL 2021`
 
     *Michihiro Yasunaga, Hongyu Ren, Antoine Bosselut, Percy Liang, Jure Leskovec.* [[PDF](https://arxiv.org/abs/2104.06378)] [[Code](https://github.com/michiyasunaga/qagnn)], 2021.4, ![](https://img.shields.io/badge/EncoderOnly-blue) ![](https://img.shields.io/badge/Medium-red)
+
+    本文提出了QA-GNN模型，旨在结合预训练语言模型和知识图谱来提高问答系统的性能。QA-GNN的核心贡献包括：
+
+    1. **相关性评分**：利用预训练语言模型对知识图谱中的节点进行评分，以确定它们与给定问答上下文的相关性。
+    2. **联合推理**：通过构建一个将问答上下文和知识图谱连接起来的联合图，并使用图神经网络在该图上进行消息传递，从而实现对问答上下文和知识图谱的联合更新。
 
 3. **Natural Language is All a Graph Needs.** `preprint`
 
     *Ruosong Ye, Caiqi Zhang, Runhui Wang, Shuyuan Xu, Yongfeng Zhang.* [[PDF](https://arxiv.org/abs/2308.07134)], 2023.8, ![](https://img.shields.io/badge/DecoderOnly-blue)![](https://img.shields.io/badge/EncoderDecoder-blue) ![](https://img.shields.io/badge/LLM-red)
 
+    本文提出了一种名为Instruct-GLM的新方法，旨在通过自然语言指令来描述图的结构，并利用大型语言模型（LLMs）解决图相关的机器学习任务。
+    这种方法的核心优势在于其灵活性、可扩展性和兼容性，使得图学习可以与现有的大型语言模型无缝集成，从而推动人工智能领域的统一。
+
+    主要贡献包括：
+
+    1. **自然语言描述图结构**：通过自然语言句子有效地描述图的连接性，无需复杂的图注意力机制或特定的图处理流程。
+    2. **可扩展的提示设计**：设计了一系列规则驱动的、高度可扩展的指令提示，用于表示一般图结构和解决图机器学习问题。
+    3. **自监督链接预测**：引入自监督链接预测作为辅助任务，以增强节点分类性能，并探讨其在多任务指令调整框架下的影响。
+
 4. **Can LLMs Effectively Leverage Graph Structural Information: When and Why.** `preprint`
 
     *Jin Huang, Xingjian Zhang, Qiaozhu Mei, Jiaqi Ma.* [[PDF](https://arxiv.org/abs/2309.16595)] [[Code](https://github.com/TRAIS-Lab/LLM-Structured-Data)], 2023.9, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
    
+   本文研究了大型语言模型（LLMs）如何有效地利用图结构信息，并探讨了在文本丰富的图中整合结构信息对LLMs预测性能的影响。
+   文章对这些问题的探索揭示了以下几点：
+   （i）没有充分证据表明LLMs在节点分类基准数据集上的性能显著归因于数据泄露；
+   （ii）LLMs倾向于将提示处理为上下文段落，而不是理解为图结构；
+   （iii）提示中包含的局部邻域中最有效的元素是与节点标签相关的短语，而不是图结构。
+
 5. **Graph Neural Prompting with Large Language Models.** `preprint`
 
     *Yijun Tian, Huan Song, Zichen Wang, Haozhu Wang, Ziqing Hu, Fang Wang, Nitesh V. Chawla, Panpan Xu.* [[PDF](https://arxiv.org/abs/2309.15427)], 2023.9, ![](https://img.shields.io/badge/DecoderOnly-blue)![](https://img.shields.io/badge/EncoderDecoder-blue) ![](https://img.shields.io/badge/LLM-red)
+
+    本文提出了一种名为Graph Neural Prompting（GNP）的方法，旨在解决大型语言模型（LLMs）在处理基于事实的知识时的局限性。
+    GNP通过结合图神经网络（GNN）、跨模态池化模块、领域投影器和自监督链接预测目标，帮助LLMs从知识图谱（KGs）中学习并提取有价值的知识。
+    这种方法不仅提高了LLMs在常识推理和生物医学推理任务中的性能，而且作为一种即插即用的解决方案，可以轻松地与现有的LLMs集成。
+
+    GNP模型的工作流程如下：
+
+    1. 子图检索：根据输入文本中的实体，从知识图谱中检索相关的子图。
+    2. GNN编码：使用图神经网络对检索到的子图进行编码，生成节点嵌入。
+    3. 跨模态池化：通过自注意力机制和交叉模态注意力机制，确定与文本最相关的节点嵌入，并生成图级嵌入。
+    4. 领域投影：将图级嵌入映射到与LLM相同的维度空间。
+    5. 自监督链接预测：通过掩蔽图中的某些边并预测它们，鼓励模型学习使用部分图内容和结构来推断缺失的链接。
+    6. LLM提示：将处理后的图级嵌入作为提示输入到LLM中，辅助LLM进行下游任务的推理。
 
 6. **Prompt-based Node Feature Extractor for Few-shot Learning on Text-Attributed Graphs.** `preprint`
 
