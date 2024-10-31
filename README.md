@@ -737,45 +737,144 @@ Table 7 in our survey paper [Large Language Models on Graphs: A Comprehensive Su
 
     *Xuanwen Huang, Kaiqiao Han, Dezheng Bao, Quanjin Tao, Zhisheng Zhang, Yang Yang, Qi Zhu.* [[PDF](https://arxiv.org/pdf/2309.02848.pdf)], 2023.9, , ![](https://img.shields.io/badge/EncoderOnly-blue) ![](https://img.shields.io/badge/Medium-red)
 
+    本文提出了一种名为G-Prompt的新框架，用于在文本属性图（TAGs）上进行少样本学习。
+    
+    G-Prompt通过结合图适配器和特定于任务的提示来提取节点特征。具体来说，G-Prompt包含一个图适配器，帮助PLMs感知图结构。
+    
+    这个图适配器是自监督的，并通过在特定TAG上的填空任务进行训练。G-Prompt然后结合特定于任务的提示来获得下游任务的可解释节点表示。
+
+    G-Prompt模型的结构主要包括两个部分：图适配器和任务特定提示。
+
+    **图适配器**
+    图适配器是一个可学习的GNN层，位于预训练语言模型（PLMs）的末端。它的作用是通过微调来更好地捕捉考虑图邻域信息的掩码标记。这个适配器是自监督的，并通过在特定的文本属性图（TAGs）上的填空任务进行训练。
+    **任务特定提示**
+    任务特定提示是在图适配器训练完成后，结合到模型中以获得下游任务的可解释节点表示。这些提示是为了特定任务设计的，可以帮助模型更好地理解和执行任务。
+
+
+    **模型使用的prompt**
+    模型使用的prompt是特定于任务的文本，它们被设计成能够引导模型生成与任务相关的输出。例如，在节点分类任务中，prompt可能包含关于节点类别或属性的信息，帮助模型生成正确的分类标签。在零样本设置中，prompt的设计尤为重要，因为它们需要提供足够的信息来指导模型生成有意义的输出，即使没有直接的训练样本。
+
 7. **GraphText: Graph Reasoning in Text Space.** `preprint`
     
     *Jianan Zhao, Le Zhuo, Yikang Shen, Meng Qu, Kai Liu, Michael Bronstein, Zhaocheng Zhu, Jian Tang* [[PDF](https://arxiv.org/abs/2310.01089)], 2023.10, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
+
+    本文提出了一种名为GRAPHTEXT的新型框架，旨在将图结构数据转换为自然语言，以便大型语言模型（LLMs）能够理解和处理。
+    
+    GRAPHTEXT的核心思想是构建一个图语法树，该树不仅包含了节点的属性信息，还编码了节点间的关系。
+    
+    通过遍历这个树，可以生成一个自然语言描述的图文本序列，然后由LLM进行处理，从而将图推理问题转化为文本生成任务。
 
 8. **GraphGPT: Graph Instruction Tuning for Large Language Models.** `preprint`
 
     *Jiabin Tang, Yuhao Yang, Wei Wei, Lei Shi, Lixin Su, Suqi Cheng, Dawei Yin, Chao Huang.* [[PDF](https://arxiv.org/pdf/2310.13023.pdf)], 2023.10, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
 
+    文章总结：
+    本文提出了一种名为GraphGPT的新框架，旨在通过图指令调整将大型语言模型（LLM）与图结构知识相结合，以提高图模型在各种数据集和任务中的泛化能力。GraphGPT的核心贡献包括：
+    1. 文本-图接地范式：通过对比方法整合文本信息，实现图结构信息与自然语言空间的有效对齐。
+    2. 双阶段图指令调整：第一阶段利用自监督信号通过图匹配任务指导模型调整，第二阶段针对特定任务进行微调，以提高模型的适应性。
+    3. 链式思维（CoT）蒸馏：通过集成封闭源强大语言模型（如GPT-3.5）生成的CoT指令数据，增强模型的逐步推理能力。
+    4. 评估与实验：在监督和零样本图学习任务中进行了广泛的评估，证明了GraphGPT在不同设置下的有效性和强大的泛化能力。
+    GraphGPT通过这些创新方法，不仅提高了LLM对图结构的理解和解释能力，而且在处理多样化的下游任务时避免了灾难性遗忘的问题。此外，GraphGPT在训练和推理阶段都展示了高效的时间和空间效率。未来的研究可能会探索压缩LLM参数的技术，以减少模型的整体大小，同时保持其性能。
+
 9. **Learning Multiplex Embeddings on Text-rich Networks with One Text Encoder.** `preprint`
 
     *Bowen Jin, Wentao Zhang, Yu Zhang, Yu Meng, Han Zhao, Jiawei Han.* [[PDF](https://arxiv.org/abs/2310.06684)][[Code]](https://github.com/PeterGriffinJin/METERN-submit), 2023.10, ![](https://img.shields.io/badge/EncoderOnly-blue) ![](https://img.shields.io/badge/Medium-red)
+
+    本文提出了一种名为METAG的新框架，用于在文本属性图上学习多层表示。METAG的核心思想是引入“关系先验标记”，作为学习文本嵌入的先验知识。
+    
+    具体来说，关系先验标记被添加到原始文本标记之前，并输入到文本编码器中。文本编码器被鼓励学习跨不同关系的共享知识，而关系先验标记则被推动捕捉特定于关系的信号。
+
+    关系先验标记来源于图中的语义关系定义。在多层文本属性图中，每种语义关系都有其特定的含义和上下文。例如，在学术图中，“引用”关系表示一篇论文引用了另一篇论文，“同作者”关系表示两篇论文由同一个作者撰写，“同场所”关系表示两篇论文在同一会议或期刊上发表。这些关系定义构成了关系先验标记的基础。
+
+    在METAG模型中，关系先验标记被设计为特殊的标记，它们被插入到原始文本标记序列的开始位置。这样，当文本编码器处理输入序列时，它能够根据这些先验标记来调整其对文本内容的理解，从而生成与特定关系相关的文本表示。
+
+    关系先验标记的具体内容和形式取决于图中定义的关系类型。在实际应用中，这些标记可能是一组预定义的符号或字符串，它们与文本编码器的词汇表相对应，以便编码器能够正确地处理这些标记并生成相应的嵌入表示。
 
 10. **Disentangled Representation Learning with Large Language Models for Text-Attributed Graphs.** `preprint`
 
     *Yijian Qin, Xin Wang, Ziwei Zhang, Wenwu Zhu.* [[PDF](https://arxiv.org/pdf/2310.18152.pdf)], 2023.10, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
 
+    本文提出了一种新的模型——解耦图文本学习器（DGTL），用于处理文本属性图（TAGs）上的任务。DGTL模型的核心贡献包括：
+    1. 解耦图学习：通过定制的解耦图神经网络层，DGTL能够从多个结构因素中捕捉TAGs中的复杂关系，从而增强LLMs的推理和预测能力。
+    2. 与LLMs的集成：DGTL与冻结的预训练LLMs结合使用，减少了计算成本，并允许与不同的LLM模型灵活组合。
+    3. 可解释性：DGTL能够提供自然语言解释，为模型预测提供了人类可理解的解释，提高了模型的透明度和可解释性。
+
+    **模型结构概述**
+    Disentangled Graph-Text Learner (DGTL) 模型的主要结构包括以下几个部分：
+    1. 文本嵌入生成：使用预训练的大型语言模型（LLMs）生成文本嵌入，这些嵌入捕捉了输入文本的语义和上下文信息。
+    2. 解耦图学习：通过一组定制的解耦图神经网络（GNN）层来学习文本属性图（TAGs）中的邻域信息。这些GNN层能够从多个结构因素中捕捉多样化的邻域信息。
+    3. 邻域信息注入：将学习到的解耦嵌入直接注入到下游的LLMs中。在LLMs的提示输入中预留一组标记位置，用于放置这些解耦嵌入。通过在LLMs的所有层中的键和查询投影函数中添加解耦嵌入，以及在值计算中使用类似的方法，将邻域信息注入到LLMs中。
+    4. 微调过程：使用算法对模型进行微调，直到收敛。每次迭代涉及从训练集中采样一个迷你批次，并通过解耦GNN层进行前向传播，以捕捉图结构和文本属性。然后，使用LLMs进行自回归微调，并计算损失函数以进行反向传播和参数更新。
+    
+
 11. **ReasoningLM: Enabling Structural Subgraph Reasoning in Pre-trained Language Models for Question Answering over Knowledge Graph.** `EMNLP23`
 
     *Jinhao Jiang, Kun Zhou, Wayne Xin Zhao, Yaliang Li, Ji-Rong Wen.* [[PDF](https://arxiv.org/abs/2401.00158)], 2023.12, ![](https://img.shields.io/badge/EncoderOnly-blue) ![](https://img.shields.io/badge/Medium-red)
+
+    本文提出了一种新的预训练语言模型（PLM），名为ReasoningLM，旨在通过统一的方法同时实现有效的问答理解和知识图谱推理。
+    
+    文章提出子图感知自注意力机制：一种新的自注意力机制，能够模仿GNN在知识图谱上进行结构化推理，从而在PLM内部实现图推理。
+
+    **实现步骤**
+    1. 子图嵌入：首先，将知识图谱中的子图转换为嵌入表示。这通常涉及到将子图中的节点和边映射到高维空间中的向量。
+    2. 自注意力计算：接着，利用自注意力机制计算子图中各个节点之间的注意力权重。这一步骤类似于传统的自注意力机制，但是在计算过程中会考虑到节点之间的图结构关系。
+    3. 结构化推理：通过设计特殊的注意力掩码（mask）和偏置（bias）机制，使得自注意力机制能够模拟GNN中的消息传递过程。这样，模型在计算注意力权重时，不仅会考虑节点自身的特征，还会考虑到节点在图中的位置和连接关系。
+    4. 参数适应性调整：为了使PLM更好地适应子图推理任务，采用了适应性调整策略。这包括使用大量带有合成问题的子图来微调模型参数，以便模型能够学习到如何在特定的输入格式和注意力机制下进行有效的推理。
 
 12. **Chain of History: Learning and Forecasting with LLMs for Temporal Knowledge Graph Completion.** `preprint`
 
     *Ruilin Luo, Tianle Gu, Haoling Li, Junzhe Li, Zicheng Lin, Jiayi Li, Yujiu Yang.* [[PDF](https://arxiv.org/pdf/2401.06072)] [[Code](https://arxiv.org/abs/2401.06072)], 2024.1, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
 
+
+    本文提出了一个名为Chain of History（CoH）的方法，该方法通过结合大型语言模型（LLMs）的优势来解决时序知识图谱补全（TKGC）问题。CoH方法的核心在于利用LLMs的强大文本理解和推理能力，以及它们在处理结构化信息方面的潜力。具体来说，文章的工作可以总结如下：
+    
+    结构感知的历史建模：CoH方法通过增强历史数据中的结构信息，提高了LLMs对时序知识图谱的理解。这包括使用实体和关系的邻近交互信息，以及引入反向逻辑数据来缓解推理过程中的“逆转诅咒”。
+
 13. **Scalable Link Prediction on Large-Scale Heterogeneous Graphs with Large Language Models.** `preprint`
 
     *Baolong Bi, Shenghua Liu, Yiwei Wang, Lingrui Mei, Xueqi Chen.* [[PDF](https://arxiv.org/abs/2401.13227)], 2024.1, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
+
+    本文首次探讨了将大型语言模型应用于大规模异构图上的链接预测任务。
+    
+    作者提出了一种名为LPNL的框架，该框架通过自然语言描述图的细节来生成特定于链接预测任务的提示。
+    
+    为了处理大型图中的海量信息，LPNL采用了两阶段采样方法和分而治之的策略，以确保模型能够集中关注关键节点信息：
+    1. 两阶段采样方法：
+       - 第一阶段：基于归一化度数的采样。这种方法根据节点的归一化度数来确定采样概率，确保不同类型节点的重要性得到平衡考虑。
+       - 第二阶段：个性化PageRank采样。在第一阶段获得的异构子图基础上，使用个性化PageRank算法来计算所有邻居节点对于源节点的重要性，并选择最重要的锚点节点序列。
+    2. 分而治之的策略：
+       - 当面对大量的候选邻居时，直接描述所有邻居的信息会导致提示长度不可控，超出大型语言模型的输入窗口限制。
+       - 为了解决这个问题，LPNL采用分而治之的方法，将原始候选集分割成多个更小的集合，并依次输入到链接预测管道中获取部分答案。
+       - 然后，根据预测结果递归地细化候选集，最终得到整个原始候选集的唯一预测答案。
 
 14. **Similarity-based Neighbor Selection for Graph LLMs.** `preprint`
 
     *Rui Li, Jiwei Li, Jiawei Han, Guoyin Wang.* [[PDF](https://arxiv.org/abs/2402.03720)], 2024.2, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
 
+    本文提出了一种名为Similarity-based Neighbor Selection (SNS) 的方法，旨在提高大型语言模型（LLMs）在处理文本属性图（TAGs）时的节点分类性能。SNS 方法通过递归**邻居选择**和基于相似性的**邻居排名**策略，有效提升了所选邻居的质量，改善了图的表示，并减轻了过度压缩和异质性等问题。
+
 15. **Let Your Graph Do the Talking: Encoding Structured Data for LLMs.** `preprint`
 
     *Bryan Perozzi, Bahare Fatemi, Dustin Zelle, Anton Tsitsulin, Mehran Kazemi, Rami Al-Rfou, Jonathan Halcrow.* [[PDF](https://arxiv.org/abs/2402.05862)], 2024.2, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
 
+    本文提出了一种名为Graph-Token的新方法，旨在解决如何将结构化数据有效地编码为序列形式，以便在大型语言模型（LLMs）中使用的问题。
+    
+    Graph-Token通过学习一个编码函数来扩展提示，从而显式地包含结构化信息。
+    
+    这种方法特别适用于将结构化数据投影到潜在的“提示空间”中，并且由于只需要训练图编码器而不需要更新LLM参数，因此具有很高的参数效率。
+
+
 16. **InstructGraph: Boosting Large Language Models via Graph-centric Instruction Tuning and Preference Alignment.** `preprint`
 
     *Jianing Wang, Junda Wu, Yupeng Hou, Yao Liu, Ming Gao, Julian McAuley.* [[PDF](https://arxiv.org/abs/2402.08785)], 2024.2, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
+
+    本文提出了一种名为InstructGraph的新框架，旨在通过指令调整和偏好对齐来提升大型语言模型（LLMs）在图推理和生成任务上的表现。
+    
+    研究者们首先设计了一种结构化格式的解释器，将图数据转换为统一的代码样式的格式，以便LLMs能够理解和处理。
+    
+    接着，他们引入了一个图指令调整阶段，训练LLMs在这些格式化的数据上进行学习，以提高其解决图相关任务的能力。
+    
+    为了减少LLMs在推理和生成过程中可能出现的幻觉问题，研究者们还引入了图偏好对齐阶段，通过优化LLMs的偏好来减轻幻觉问题。
 
 17. **Graph Neural Network Enhanced Retrieval for Question Answering of LLMs.** `preprint`
 
