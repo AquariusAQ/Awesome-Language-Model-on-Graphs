@@ -554,9 +554,9 @@ Table 3 in our survey paper [Large Language Models on Graphs: A Comprehensive Su
     1. 重要性基础的宏观级别图形理解：将图形描述中的关键信息重新组织，使其与LLMs在序列头部和尾部（强记忆区域）的自然语言理解能力相匹配。
     2. 基于RAG的微观级别图形理解：为LLMs在序列中的弱记忆区域构建一个轻量级的外部知识库，以补偿这些区域的记忆不足。 
 
-18. **Can Large Language Models Analyze Graphs like Professionals? A Benchmark, Datasets and Models.** `NeurIPs`
+18. **Can Large Language Models Analyze Graphs like Professionals? A Benchmark, Datasets and Models.** `NeurIPS 2024`
 
-    *Xin Li, Weize Chen, Qizhi Chu, Haopeng Li, Zhaojun Sun, Ran Li, Chen Qian, Yiwei Wei, Zhiyuan Liu, Chuan Shi, Maosong Sun, Cheng Yang.* [[PDF](https://arxiv.org/abs/2409.19667)], 2024.9, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
+    *Xin Li, Weize Chen, Qizhi Chu, Haopeng Li, Zhaojun Sun, Ran Li, Chen Qian, Yiwei Wei, Zhiyuan Liu, Chuan Shi, Maosong Sun, Cheng Yang.* [[PDF](https://arxiv.org/abs/2409.19667)] [[Code](https://github.com/BUPT-GAMMA/ProGraph)] [[Models and Datasets](https://huggingface.co/lixin4sky/ProGraph)], 2024.9, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
 
     本文提出了一种新的方法，旨在评估和提升大型语言模型（LLMs）在图分析方面的能力。
     
@@ -1030,6 +1030,9 @@ Table 7 in our survey paper [Large Language Models on Graphs: A Comprehensive Su
 
     *Adrián Bazaga, Pietro Liò, Gos Micklem.* [[PDF](https://arxiv.org/abs/2402.07309)], 2024.2, ![](https://img.shields.io/badge/EncoderOnly-blue) ![](https://img.shields.io/badge/Medium-red)
 
+    本文提出了一种新的模型架构HyperBERT，旨在提高BERT在处理文本属性超图节点分类任务时对超图结构信息的编码能力，同时保留其语义编码能力。
+    
+    HyperBERT通过在BERT的基础上增加超图感知层，将超图的结构信息与文本的语义信息结合起来，从而更好地捕捉节点间的复杂交互和文本内容的语义特征。
     
 
 12. **Unleashing the Power of LLMs as Multi-Modal Encoders for Text and Graph-Structured Data.** `preprint`
