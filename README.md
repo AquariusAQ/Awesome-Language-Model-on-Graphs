@@ -880,9 +880,22 @@ Table 7 in our survey paper [Large Language Models on Graphs: A Comprehensive Su
 
     *Zijian Li, Qingyan Guo, Jiawei Shao, Lei Song, Jiang Bian, Jun Zhang, Rui Wang.* [[PDF](https://arxiv.org/abs/2406.06572)], 2024.6, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
 
+    本文提出了一种新的检索方法GNN-Ret，旨在通过图神经网络（GNNs）增强大型语言模型（LLM）的问答能力。
+    
+    该方法首先构建一个段落图，将结构相关或关键词相关的段落连接起来。
+    接着，利用GNN来捕捉段落之间的关系，从而提高检索相关段落的效率。
+    
+    为了处理多跳推理问题，作者还提出了RGNN-Ret，这是一种使用循环图神经网络（RGNN）的方法，能够在每一步整合之前的段落图，以增强对支持性段落的检索。
+
 18. **LLMs as Zero-shot Graph Learners: Alignment of GNN Representations with LLM Token Embeddings.** `preprint`
 
     *Duo Wang, Yuan Zuo, Fengzhi Li, Junjie Wu.* [[PDF](https://arxiv.org/abs/2408.14512)], 2024.8, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
+
+    本文提出了一种新的框架TEA-GLM，旨在解决图机器学习中零样本学习的问题。该框架通过以下步骤实现：
+    1. 预训练GNN：首先，作者预训练了一个GNN，以捕捉图中的消息传递模式，并生成节点表示。
+    2. 与LLM对齐：接着，作者将GNN的表示与LLM的token嵌入对齐，使得GNN能够利用LLM的预训练知识，从而在不同的数据集和任务之间进行泛化，而无需特定任务的微调。
+    3. 线性投影器：为了将GNN的表示转换为LLM可以理解的形式，作者训练了一个线性投影器，将图表示映射到固定数量的图token嵌入。
+    4. 统一指令设计：作者为不同层次的图任务设计了一个统一的指令，包括节点分类和链接预测等，以增强模型在零样本学习中的有效性。
 
 #### Graph-Empowered LLM (Node)
 
@@ -890,45 +903,134 @@ Table 7 in our survey paper [Large Language Models on Graphs: A Comprehensive Su
 
     *Rik Koncel-Kedziorski, Dhanush Bekal, Yi Luan, Mirella Lapata, Hannaneh Hajishirzi.* [[PDF](https://arxiv.org/abs/1904.02342)] [[Code](https://github.com/rikdz/GraphWriter)], 2019.4, ![](https://img.shields.io/badge/EncoderDecoder-blue) ![](https://img.shields.io/badge/Medium-red)
 
+    本文研究了如何从自动信息抽取系统（尤其是知识图谱）的输出生成连贯的多句文本。
+    
+    作者提出了一种新的图变换编码器，能够有效地利用知识图谱中的关系结构，而不需要将图线性化或强加层次结构。
+    
+    这个编码器被整合到一个编码器-解码器框架中，形成了一个端到端可训练的系统，用于将图谱转换为文本。
+    
+    该系统被应用于科学文本领域，并通过自动和人工评估展示了其在生成更具有信息量和更好文档结构的文本方面的优势。
+
 2. **GraphFormers: GNN-nested Transformers for Representation Learning on Textual Graph.** `NeurIPs 2021`
 
     *Junhan Yang, Zheng Liu, Shitao Xiao, Chaozhuo Li, Defu Lian, Sanjay Agrawal, Amit Singh, Guangzhong Sun, Xing Xie.* [[PDF](https://arxiv.org/abs/2105.02605)][[Code]](https://github.com/microsoft/GraphFormers), 2021.5, ![](https://img.shields.io/badge/EncoderOnly-blue) ![](https://img.shields.io/badge/Medium-red)
+
+    本文提出了一种新的模型架构GraphFormers，用于文本图的表示学习。
+    
+    该模型通过将GNN组件嵌套在预训练语言模型的每个Transformer层旁边，从而精确捕捉每个文本节点的潜在语义，并有效地整合这些信息以生成高质量的文本图表示。
+    
+    为了进一步提高GraphFormers的表示质量，作者引入了两阶段渐进式训练策略，并通过单向图聚合简化了模型，以消除不必要的计算成本。
+    
+    实验研究表明，GraphFormers在三个大规模文本图数据集上显著优于现有的级联Transformer-GNN方法，同时具有可比的运行效率和可扩展性。
+    
+    此外，GraphFormers已被部署为必应搜索中的主要广告检索算法之一，并在实际应用中取得了显著的性能提升。
 
 3. **GreaseLM: Graph Reasoning Enhanced Language Models for Question Answering.** `ICLR 2022`
 
     *Xikun Zhang, Antoine Bosselut, Michihiro Yasunaga, Hongyu Ren, Percy Liang, Christopher D Manning and Jure Leskovec.* [[PDF](https://cs.stanford.edu/~myasu/papers/greaselm_iclr22.pdf)] [[Code](https://github.com/snap-stanford/GreaseLM)], 2022.1, ![](https://img.shields.io/badge/EncoderOnly-blue) ![](https://img.shields.io/badge/Medium-red)
 
+    本文提出了一种新的模型架构GREASELM，旨在通过结合预训练语言模型（LM）和图神经网络（GNN）来提高问答系统的性能。
+    
+    GREASELM的核心思想是在多个层次上实现语言模型和知识图谱之间的深度交互和信息融合。
+    
+    具体来说，该模型通过特殊设计的交互令牌和节点，使得语言表示和知识图谱表示能够在每一层中相互传递信息，从而实现跨模态的联合推理。
+
+    *在每一层LM layer和GNN layer更新过各自的embedding之后，作者直接将二者并起来，用 MLP 来让两个模态的信息进行融合，再将混合后的输出截断分别进入下一层LM layer和GNN layer*
+
+
 4. **Heterformer: Transformer-based Deep Node Representation Learning on Heterogeneous Text-Rich Networks.** `KDD 2023`
 
     *Bowen Jin, Yu Zhang, Qi Zhu, Jiawei Han.* [[PDF](https://arxiv.org/abs/2205.10282)][[Code]](https://github.com/PeterGriffinJin/Heterformer), 2022.5, ![](https://img.shields.io/badge/EncoderOnly-blue) ![](https://img.shields.io/badge/Medium-red)
+
+    本文提出了一种名为Heterformer的新方法，用于在异构文本丰富的网络中进行深度节点表示学习。
+    Heterformer通过结合Transformer架构和异构网络信息，有效地捕捉了节点的文本语义和网络结构特征。该方法的关键创新点包括：
+
+    1. 异构网络增强的Transformer：Heterformer在每个Transformer层中注入异构结构信息，通过虚拟邻居令牌来融合节点的文本丰富邻居、文本缺失邻居及其自身内容的表示。
+    2. 文本丰富和文本缺失节点的编码：Heterformer使用两种虚拟邻居令牌来分别捕获文本丰富邻居和文本缺失邻居的语义信号，并为文本缺失节点设计了一个嵌入预热阶段，以获得更好的初始嵌入。
+    3. 类型异构性的处理：为了处理节点和边类型的多样性，Heterformer使用类型特定的变换矩阵将不同类型节点投影到同一潜在空间，并在网络注意力机制中表征边类型。
+    4. 无监督链接预测目标：整体模型通过无监督链接预测目标进行优化，这有助于模型学习到能够泛化到各种下游任务的节点嵌入。
 
 5. **Hidden Schema Networks.** `preprint`
 
     *Ramsés J. Sánchez, Lukas Conrads, Pascal Welke, Kostadin Cvejoski, César Ojeda.* [[PDF](https://arxiv.org/abs/2207.03777)], 2022.7, ![](https://img.shields.io/badge/EncoderOnly-blue) ![](https://img.shields.io/badge/Medium-red)
 
+    本文介绍了一种名为隐藏模式网络（Hidden Schema Networks, HSN）的新颖神经语言模型，旨在通过显式关系结构来增强预训练语言模型的组合性。
+    
+    HSN通过编码句子为符号序列，并利用有偏随机游走来探索潜在的图结构，从而推断出后验分布。
+    
+    作者首先证明了HSN能够从合成数据集中恢复出真实的图结构。
+    
+    然后，他们使用预训练的BERT和GPT-2模型作为编码器和解码器，从自然语言数据集中推断出符号网络，这些符号网络能够编码语言的不同方面，如主题或情感。
+    
+    此外，作者还展示了GPT类模型可以有效地基于这些符号表示进行条件化。
+    
+    最后，作者探索了在常识知识数据库推断出的模式网络上训练自回归模型，并使用采样路径来增强预训练语言模型在常识推理任务上的性能。
+    
+    总的来说，HSN提供了一种新的方法来处理自然语言数据，并可能有助于提高语言模型在理解和推理方面的性能。
+
 6. **DRAGON: Deep Bidirectional Language-Knowledge Graph Pretraining.** `NeurIPs 2022`
 
     *Michihiro Yasunaga, Antoine Bosselut, Hongyu Ren, Xikun Zhang, Christopher D. Manning, Percy Liang, Jure Leskovec.* [[PDF](https://cs.stanford.edu/~myasu/papers/dragon_neurips22.pdf)][[Code]](https://github.com/michiyasunaga/dragon), 2022.10, ![](https://img.shields.io/badge/EncoderOnly-blue) ![](https://img.shields.io/badge/Medium-red)
+
+    本文提出了一种名为DRAGON的新方法，旨在通过自监督学习从大规模文本和知识图谱中预训练深度双向语言-知识模型。
+    DRAGON的核心贡献在于其能够有效地结合文本和KG，通过双向交互模型和联合自监督目标来学习文本和KG之间的相互作用。
+    这种方法不仅提高了模型在各种NLP任务中的性能，而且在需要复杂推理的任务中表现尤为突出。
+
+    DRAGON通过创建文本段落和相关KG子图的配对作为输入，使用交叉模态编码器来双向交换信息，并通过掩码语言建模和链接预测任务进行预训练。
+
+    实验结果表明，DRAGON在多个基准测试中超越了现有的LM和LM+KG模型，特别是在需要复杂推理的任务中。
+    此外，DRAGON在低资源设置下也显示出更好的数据效率。文章还探讨了DRAGON的关键设计选择，如预训练目标、链接预测头的选择、交叉模态模型和KG结构的使用。
 
 7. **Edgeformers: Graph-Empowered Transformers for Representation Learning on Textual-Edge Networks.** `ICLR 2023`
 
     *Bowen Jin, Yu Zhang, Yu Meng, Jiawei Han.* [[PDF](https://openreview.net/pdf?id=2YQrqe4RNv)][[Code]](https://github.com/PeterGriffinJin/Edgeformers), 2023.1, ![](https://img.shields.io/badge/EncoderOnly-blue) ![](https://img.shields.io/badge/Medium-red)
 
+    本文提出了一种新的网络表示学习框架Edgeformers，旨在解决文本丰富网络中的边缘表示学习问题。
+
+    Edgeformers通过图增强的Transformer架构，将网络结构信息与文本信息深度融合，以提高边缘和节点的表示学习效果。
+
+    Edgeformers的核心思想是在Transformer编码过程中引入虚拟节点标记，以注入网络信号，并通过注意力机制聚合边缘表示来获得节点表示。
+
+    这种方法不仅考虑了文本的上下文语义，还充分利用了网络结构信息，从而提高了模型的表示能力和预测准确性。
+
 8. **Patton: Language Model Pretraining on Text-rich Networks.** `ACL 2023`
 
     *Bowen Jin, Wentao Zhang, Yu Zhang, Yu Meng, Xinyang Zhang, Qi Zhu, Jiawei Han.* [[PDF](https://arxiv.org/abs/2305.12268)][[Code]](https://github.com/PeterGriffinJin/Patton), 2023.5, ![](https://img.shields.io/badge/EncoderOnly-blue) ![](https://img.shields.io/badge/Medium-red)
+
+    本文提出了一种名为PATTON的方法，用于在文本丰富的网络上对语言模型进行预训练。
+    PATTON的核心思想是利用文本信息和网络结构信息来巩固预训练语言模型理解文本和文档的能力。具体来说，PATTON采用了两种预训练策略：
+
+    **网络上下文掩码语言建模：随机掩码每个节点内的几个标记，并训练语言模型根据节点内和网络邻居的标记来预测这些掩码标记。**
+    **掩码节点预测：随机掩码网络中的一些节点，并训练语言模型根据邻居的文本信息正确识别这些掩码节点。**
 
 9. **Graph Language Models.** `preprint`
 
     *Moritz Plenz, Anette Frank.* [[PDF](https://arxiv.org/abs/2401.07105)], 2024.1, ![](https://img.shields.io/badge/EncoderDecoder-blue) ![](https://img.shields.io/badge/Medium-red)
 
+    本文提出了一种新的图语言模型（GLM），旨在结合语言模型（LMs）和图神经网络（GNNs）的优势，以更有效地处理和理解知识图谱（KGs）。GLM通过以下方式实现这一目标：
+    1. 初始化：GLM的参数从预训练的语言模型（如T5）初始化，这有助于模型更好地理解图中的个体概念和三元组。
+    2. 架构设计：GLM的架构被设计为图变换器（Graph Transformer），允许它直接在图结构上进行操作，同时保留其作为语言模型的能力。
+    3. 图预处理：为了使GLM能够处理图数据，作者将图转换为Levi图，并对节点和边进行标记化，以便模型可以像处理文本一样处理图。
+    4. 位置编码：GLM使用相对位置编码（relative positional encoding）来捕捉图中节点之间的距离，这有助于模型理解图的结构。
+    5. 注意力机制：GLM的注意力机制被修改，以便在处理图时考虑到局部和全局的上下文信息。
+
 10. **Efficient Tuning and Inference for Large Language Models on Textual Graphs.** `preprint`
 
     *Yun Zhu, Yaoke Wang, Haizhou Shi, Siliang Tang.* [[PDF](https://arxiv.org/abs/2401.15569)], 2024.1, ![](https://img.shields.io/badge/DecoderOnly-blue) ![](https://img.shields.io/badge/LLM-red)
 
+    本文提出了一种名为ENGINE的高效微调方法，旨在解决大型语言模型（LLMs）在处理文本图时面临的效率挑战。
+    
+    作者通过将LLMs与图神经网络（GNNs）通过一个可调的侧结构相结合，减少了训练复杂性，同时保持了模型的性能。
+    
+    这种方法不仅提高了训练效率，还通过引入缓存和动态早期退出机制，进一步加快了训练和推理速度。
+    
+    *将LLM的每一层输出接入GNN中再进行下游任务*
+
 11. **HyperBERT: Mixing Hypergraph-Aware Layers with Language Models for Node Classification on Text-Attributed Hypergraphs.** `preprint`
 
     *Adrián Bazaga, Pietro Liò, Gos Micklem.* [[PDF](https://arxiv.org/abs/2402.07309)], 2024.2, ![](https://img.shields.io/badge/EncoderOnly-blue) ![](https://img.shields.io/badge/Medium-red)
+
+    
 
 12. **Unleashing the Power of LLMs as Multi-Modal Encoders for Text and Graph-Structured Data.** `preprint`
 
